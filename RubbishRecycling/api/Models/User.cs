@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace RubbishRecyclingAU.Models
 {
     ///<Summary>
@@ -8,7 +10,10 @@ namespace RubbishRecyclingAU.Models
         public int Id { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public string Address { get; set; }
         public string AvatarUrl { get; set; }
+        public int AddressId { get; set; }
+
+        public virtual Address Address { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

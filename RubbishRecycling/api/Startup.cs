@@ -9,7 +9,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Swashbuckle.AspNetCore.Filters;
 
 #pragma warning disable 1591
 
@@ -32,7 +31,7 @@ namespace RubbishRecyclingAU
             services.AddSingleton(Configuration);
             services.AddSingleton<ILoggerFactory, LoggerFactory>();
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
 
             var writerConnStr = Configuration.GetConnectionString("RubbishRecyclingDb");
             if (!string.IsNullOrEmpty(writerConnStr))
@@ -78,8 +77,7 @@ namespace RubbishRecyclingAU
              * SwaggerUI
              * Healthchecks (at /health endpoint)
             */
-
-            app.UsePathBase("/api");
+            app.ApplyLoggingMiddleware();
             app.UseRouting(); // required to support /api/{route} routing
             app.UseEndpoints(endpoints => // required to support /api/{route} routing
             {
@@ -87,56 +85,8 @@ namespace RubbishRecyclingAU
                 endpoints.MapHealthChecks("/health");
             });
 
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                //app.UseHttpsRedirection();
-            }
-
-
-            ConfigureOpenApi(app);
-        }
-
-        private static string SwaggerTitle = "InfoTrack CDD API";
-        private static string SwaggerVersion => $"v{Assembly.GetExecutingAssembly().GetName().Version}";
-        private static string SwaggerDescription = "Customer Due Diligence (CDD) API";
-        private static string SwaggerDocumentName = $"RubbishRecyclingAU.Api.{SwaggerVersion}";
-
-        private static void ConfigureOpenApiServices(IServiceCollection services)
-        {
-            /*
-             Adds a default swagger document using the NSwag package. Options to specify titles, descriptions, and versions.
-            */
-            //services.AddCommonSwagger(title, description, versionStr);
-
-            services.AddOpenApiDocument(configure =>
-            {
-                configure.Title = SwaggerTitle;
-                configure.Description = SwaggerDescription;
-                configure.Version = SwaggerVersion;
-                configure.DocumentName = SwaggerDocumentName;
-            });
-
-            // The default System.Text.Json.Serialization cannot serialize Enums to strings and causes doc generation to fail.
-            services.AddSwaggerGenNewtonsoftSupport();
-            services.AddSwaggerExamples();
-            services.AddControllers().AddNewtonsoftJson();
-
-            ConfigureOpenApiServices(services);
-        }
-
-        private static void ConfigureOpenApi(IApplicationBuilder app)
-        {
             app.UseOpenApi();
             app.UseSwaggerUi3();
-
-            //app.UseSwaggerUI(c =>
-            //{
-            //    c.SwaggerEndpoint($"/api/swagger/{SwaggerDocumentName}/swagger.json", SwaggerDocumentName);
-            //});
         }
     }
 }

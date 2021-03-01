@@ -14,13 +14,9 @@
 
   <ItemGroup>
     <Compile Remove="Examples\**" />
-    <Compile Remove="Middleware\**" />
     <Content Remove="Examples\**" />
-    <Content Remove="Middleware\**" />
     <EmbeddedResource Remove="Examples\**" />
-    <EmbeddedResource Remove="Middleware\**" />
     <None Remove="Examples\**" />
-    <None Remove="Middleware\**" />
   </ItemGroup>
 
   <ItemGroup>
