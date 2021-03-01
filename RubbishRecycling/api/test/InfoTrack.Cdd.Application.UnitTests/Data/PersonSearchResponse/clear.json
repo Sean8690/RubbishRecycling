@@ -1,0 +1,787 @@
+﻿{
+  "checkRisk": {
+    "checkDate": "2021-01-13T00:34:31.949Z",
+    "checkId": "5c399445-52c7-59d9-500d-26841ed69c65",
+    "checkPerformedBy": "builtin-risk",
+    "checkSource": "various",
+    "checkType": "two_plus,id,pep_media,idvalidate",
+    "resultNotes": [
+      {
+        "kvpKey": "risk_factor.num_pep.value",
+        "kvpType": "general.string",
+        "kvpValue": "No Match"
+      },
+      {
+        "kvpKey": "risk_factor.num_pep.score",
+        "kvpType": "general.integer",
+        "kvpValue": "10"
+      },
+      {
+        "kvpKey": "risk_factor.num_pep.description",
+        "kvpType": "general.string",
+        "kvpValue": "PEP Status"
+      },
+      {
+        "kvpKey": "risk_factor.num_sanctions.value",
+        "kvpType": "general.string",
+        "kvpValue": "No match"
+      },
+      {
+        "kvpKey": "risk_factor.num_sanctions.score",
+        "kvpType": "general.integer",
+        "kvpValue": "10"
+      },
+      {
+        "kvpKey": "risk_factor.num_sanctions.description",
+        "kvpType": "general.string",
+        "kvpValue": "Sanctions Nexus"
+      },
+      {
+        "kvpKey": "risk_factor.internal_watchlist.value",
+        "kvpType": "general.string",
+        "kvpValue": "No Historical AML Risk Events"
+      },
+      {
+        "kvpKey": "risk_factor.internal_watchlist.score",
+        "kvpType": "general.integer",
+        "kvpValue": "10"
+      },
+      {
+        "kvpKey": "risk_factor.internal_watchlist.description",
+        "kvpType": "general.string",
+        "kvpValue": "FCC Risk Events"
+      },
+      {
+        "kvpKey": "risk_factor.num_adverse.value",
+        "kvpType": "general.string",
+        "kvpValue": "No flag"
+      },
+      {
+        "kvpKey": "risk_factor.num_adverse.score",
+        "kvpType": "general.integer",
+        "kvpValue": "10"
+      },
+      {
+        "kvpKey": "risk_factor.num_adverse.description",
+        "kvpType": "general.string",
+        "kvpValue": "Adverse media"
+      },
+      {
+        "kvpKey": "risk_factor.fund.value",
+        "kvpType": "general.string",
+        "kvpValue": "Not applicable"
+      },
+      {
+        "kvpKey": "risk_factor.fund.score",
+        "kvpType": "general.integer",
+        "kvpValue": "0"
+      },
+      {
+        "kvpKey": "risk_factor.fund.description",
+        "kvpType": "general.string",
+        "kvpValue": "Source of Funds"
+      },
+      {
+        "kvpKey": "risk_factor.cross_border.value",
+        "kvpType": "general.string",
+        "kvpValue": "Pure Domestic"
+      },
+      {
+        "kvpKey": "risk_factor.cross_border.score",
+        "kvpType": "general.integer",
+        "kvpValue": "5"
+      },
+      {
+        "kvpKey": "risk_factor.cross_border.description",
+        "kvpType": "general.string",
+        "kvpValue": "Cross-Border / Non-Residency Risk"
+      },
+      {
+        "kvpKey": "risk_factor.work_situation.value",
+        "kvpType": "general.string",
+        "kvpValue": "None"
+      },
+      {
+        "kvpKey": "risk_factor.work_situation.score",
+        "kvpType": "general.integer",
+        "kvpValue": "0"
+      },
+      {
+        "kvpKey": "risk_factor.work_situation.description",
+        "kvpType": "general.string",
+        "kvpValue": "Occupation Risk"
+      },
+      {
+        "kvpKey": "risk_factor.business.value",
+        "kvpType": "general.string",
+        "kvpValue": "Not applicable"
+      },
+      {
+        "kvpKey": "risk_factor.business.score",
+        "kvpType": "general.integer",
+        "kvpValue": "0"
+      },
+      {
+        "kvpKey": "risk_factor.business.description",
+        "kvpType": "general.string",
+        "kvpValue": "Business Risk (ISIC) Description"
+      },
+      {
+        "kvpKey": "risk_factor.residential_country.value",
+        "kvpType": "general.string",
+        "kvpValue": "None"
+      },
+      {
+        "kvpKey": "risk_factor.residential_country.score",
+        "kvpType": "general.integer",
+        "kvpValue": "0"
+      },
+      {
+        "kvpKey": "risk_factor.residential_country.description",
+        "kvpType": "general.string",
+        "kvpValue": "Jurisdictional Risk"
+      },
+      {
+        "kvpKey": "Risk.Level",
+        "kvpType": "general.string",
+        "kvpValue": "LOW"
+      },
+      {
+        "kvpKey": "Risk.Bracket",
+        "kvpType": "general.integer",
+        "kvpValue": "1"
+      },
+      {
+        "kvpKey": "Confidence.Level",
+        "kvpType": "general.string",
+        "kvpValue": "HIGH"
+      }
+    ],
+    "resultState": "CHECKED_SUCCESS_CLEAR",
+    "riskLevel": 45
+  },
+  "checkSummary": {
+    "checkDate": "2021-01-13T00:34:31.949Z",
+    "checkId": "5c399445-52c7-59d9-500d-26841ed69c65",
+    "checkPerformedBy": "various",
+    "checkSource": "various",
+    "checkType": "two_plus,id,pep_media,idvalidate",
+    "confidenceLevel": 81,
+    "providerCheckID": "5c399445-52c7-59d9-500d-26841ed69c65",
+    "resultNotes": [
+      {
+        "kvpKey": "Action.Recommended",
+        "kvpType": "general.string",
+        "kvpValue": "PASS"
+      },
+      {
+        "kvpKey": "Info.AttestationMessage",
+        "kvpType": "general.string",
+        "kvpValue": "Attestation check completed successfully. The attestation documents are not present, but are not required"
+      },
+      {
+        "kvpKey": "Info.NameMatchCount",
+        "kvpType": "general.integer",
+        "kvpValue": "3"
+      },
+      {
+        "kvpKey": "Info.AddressMatchCount",
+        "kvpType": "general.integer",
+        "kvpValue": "1"
+      },
+      {
+        "kvpKey": "Info.DoBMatchCount",
+        "kvpType": "general.integer",
+        "kvpValue": "2"
+      },
+      {
+        "kvpKey": "Info.GovIDMatchCount",
+        "kvpType": "general.integer",
+        "kvpValue": "1"
+      },
+      {
+        "kvpKey": "Info.OtherIDMatchCount",
+        "kvpType": "general.integer",
+        "kvpValue": "0"
+      },
+      {
+        "kvpKey": "Risk.Policy",
+        "kvpType": "general.string",
+        "kvpValue": "SDD"
+      },
+      {
+        "kvpKey": "Risk.Level",
+        "kvpType": "general.string",
+        "kvpValue": "LOW"
+      },
+      {
+        "kvpKey": "Risk.Bracket",
+        "kvpType": "general.integer",
+        "kvpValue": "1"
+      },
+      {
+        "kvpKey": "Confidence.Level",
+        "kvpType": "general.string",
+        "kvpValue": "HIGH"
+      },
+      {
+        "kvpKey": "Risk.ResultID",
+        "kvpType": "result.id",
+        "kvpValue": "4e5ec471-1aaa-4c04-f1c7-e7e1a1d4b6f7"
+      }
+    ],
+    "resultState": "CHECKED_SUCCESS_CLEAR",
+    "riskLevel": 45
+  },
+  "entityProfileResult": {
+    "actionRecommended": "PASS",
+    "addressResults": {
+      "1cedcc0a-eb62-b301-8df4-0a122bf39204": {
+        "checked": true,
+        "matchCount": 1,
+        "matchSources": [
+          "postal_db"
+        ],
+        "matchType": "curr_addr",
+        "verified": true
+      }
+    },
+    "checkId": "5c399445-52c7-59d9-500d-26841ed69c65",
+    "checkResults": [
+      {
+        "checkClass": "kyc",
+        "checkType": "two_plus",
+        "result": "PASS"
+      },
+      {
+        "checkClass": "kyc",
+        "checkType": "id",
+        "result": "PASS"
+      },
+      {
+        "checkClass": "aml",
+        "checkType": "pep_media",
+        "result": "PASS"
+      },
+      {
+        "checkClass": "none",
+        "checkType": "idvalidate",
+        "code": "MISSING_PREREQUISITE",
+        "message": "Attestation check completed successfully. The attestation documents are not present, but are not required",
+        "result": "NA"
+      }
+    ],
+    "checkType": "two_plus,id,pep_media,idvalidate",
+    "documentResults": {
+      "418647e4-a86c-2530-f734-3a4f9424ae38": {
+        "checked": true,
+        "matchCount": 1,
+        "matchSources": [
+          "Australian Government ID"
+        ],
+        "matchType": "gov_id",
+        "verified": true
+      }
+    },
+    "entityId": "7b633b48-78cc-b510-bec9-5ca683609868",
+    "kycResults": [
+      {
+        "matchCount": 3,
+        "matchCountRequired": 2,
+        "matchTypes": {
+          "name": {
+            "checked": true,
+            "matchCount": 3,
+            "matchSources": [
+              "Australian Government ID",
+              "claims_db",
+              "fcs_number_directory"
+            ],
+            "verified": true
+          }
+        },
+        "verified": true
+      },
+      {
+        "matchCount": 3,
+        "matchCountRequired": 2,
+        "matchTypes": {
+          "address": {
+            "checked": true,
+            "matchCount": 1,
+            "matchSources": [
+              "postal_db"
+            ],
+            "verified": true
+          },
+          "dob": {
+            "checked": true,
+            "matchCount": 2,
+            "matchSources": [
+              "Australian Government ID",
+              "prop_db"
+            ],
+            "verified": true
+          }
+        },
+        "verified": true
+      },
+      {
+        "matchCount": 1,
+        "matchCountRequired": 1,
+        "matchTypes": {
+          "gov_id": {
+            "checked": true,
+            "matchCount": 1,
+            "matchSources": [
+              "Australian Government ID"
+            ],
+            "verified": true
+          }
+        },
+        "verified": true
+      }
+    ],
+    "latestCheckDate": "2021-01-13T00:34:31.888Z",
+    "policyName": "default",
+    "profileName": "default",
+    "riskLevel": "LOW",
+    "riskPolicy": "SDD"
+  },
+  "entityResult": {
+    "addressesCheck": [
+      {
+        "address": {
+          "addressId": "1cedcc0a-eb62-b301-8df4-0a122bf39204",
+          "country": "AUS",
+          "endDate": "0001-01-01",
+          "longForm": "17 HUME STREET, PARKES, NSW 2870",
+          "postalCode": "2870",
+          "startDate": "0001-01-01",
+          "state": "NSW",
+          "streetName": "HUME",
+          "streetNumber": "17",
+          "streetType": "STREET",
+          "town": "PARKES"
+        },
+        "checkResult": [
+          {
+            "checkProcessResults": {
+              "checkDate": "2021-01-13T00:34:29.115Z",
+              "checkId": "5c399445-52c7-59d9-500d-26841ed69c65",
+              "checkPerformedBy": "equifax",
+              "checkSource": "postal_db",
+              "checkType": "two_plus,id,pep_media",
+              "confidenceLevel": 92,
+              "providerCheckID": "c8hlx3636v50",
+              "resultNotes": [
+                {
+                  "kvpKey": "address_matched",
+                  "kvpType": "general.string",
+                  "kvpValue": "postal_db"
+                },
+                {
+                  "kvpKey": "addressId",
+                  "kvpType": "general.string",
+                  "kvpValue": "1cedcc0a-eb62-b301-8df4-0a122bf39204"
+                },
+                {
+                  "kvpKey": "original_checksource",
+                  "kvpType": "general.string",
+                  "kvpValue": "postal_db"
+                }
+              ],
+              "resultState": "CHECKED_SUCCESS_CLEAR"
+            },
+            "checkRequestedBy": "You"
+          }
+        ]
+      }
+    ],
+    "amlResultSets": [
+      {
+        "checkResultsListPEP": [
+          {
+            "bcro": {
+              "backgroundCheckType": "PEP",
+              "checkDetails": [
+                {
+                  "kvpKey": "aml.search_result.report_url",
+                  "kvpType": "general.string",
+                  "kvpValue": "https://app.complyadvantage.com/public/search/1610498070-dk4o74uC/fdabaa154f0c"
+                },
+                {
+                  "kvpKey": "aml.search_fuzziness",
+                  "kvpType": "general.float",
+                  "kvpValue": "0.100000"
+                },
+                {
+                  "kvpKey": "aml.case_id",
+                  "kvpType": "result.code",
+                  "kvpValue": "432278802"
+                },
+                {
+                  "kvpKey": "aml.search_reference_id",
+                  "kvpType": "result.code",
+                  "kvpValue": "1610498070-dk4o74uC"
+                },
+                {
+                  "kvpKey": "bcro.grouping_id",
+                  "kvpType": "general.string",
+                  "kvpValue": "e7ecefc9-a68c-ffeb-492c-191d07e327e0"
+                },
+                {
+                  "kvpKey": "requested_check_type",
+                  "kvpType": "general.string",
+                  "kvpValue": "two_plus,id,pep_media,idvalidate"
+                }
+              ],
+              "checkId": "5c399445-52c7-59d9-500d-26841ed69c65",
+              "checkPerformedBy": "ComplyAdvantage",
+              "confidenceLevel": 10,
+              "currentState": "CLEAR",
+              "firstCheckDate": "2021-01-13T00:34:30.000Z",
+              "latestCheckDate": "2021-01-13T00:34:30.000Z"
+            },
+            "id": "d970874f-7908-3c18-a1c6-4b7e9182f9bf"
+          }
+        ],
+        "groupDetails": {
+          "bcro": {
+            "backgroundCheckType": "GROUP",
+            "checkDetails": [
+              {
+                "kvpKey": "bcro.grouping_id",
+                "kvpType": "general.string",
+                "kvpValue": "e7ecefc9-a68c-ffeb-492c-191d07e327e0"
+              },
+              {
+                "kvpKey": "requested_check_type",
+                "kvpType": "general.string",
+                "kvpValue": "two_plus,id,pep_media,idvalidate"
+              }
+            ],
+            "checkId": "5c399445-52c7-59d9-500d-26841ed69c65",
+            "firstCheckDate": "0001-01-01T00:00:00.000Z",
+            "latestCheckDate": "0001-01-01T00:00:00.000Z"
+          },
+          "id": "d30e28be-1f58-9134-eb1a-3238864e8b2a"
+        }
+      }
+    ],
+    "dateOfBirthCheck": {
+      "checkResult": [
+        {
+          "checkProcessResults": {
+            "checkDate": "2021-01-13T00:34:29.278Z",
+            "checkId": "5c399445-52c7-59d9-500d-26841ed69c65",
+            "checkPerformedBy": "equifax",
+            "checkSource": "au-govid1",
+            "checkType": "two_plus,id,pep_media",
+            "confidenceLevel": 75,
+            "providerCheckID": "c8hlx38snk9p",
+            "resultNotes": [
+              {
+                "kvpKey": "dob_matched",
+                "kvpType": "general.string",
+                "kvpValue": "dvs"
+              },
+              {
+                "kvpKey": "original_checksource",
+                "kvpType": "general.string",
+                "kvpValue": "dvs"
+              }
+            ],
+            "resultState": "CHECKED_SUCCESS_CLEAR"
+          },
+          "checkRequestedBy": "You"
+        },
+        {
+          "checkProcessResults": {
+            "checkDate": "2021-01-13T00:34:29.115Z",
+            "checkId": "5c399445-52c7-59d9-500d-26841ed69c65",
+            "checkPerformedBy": "gbg",
+            "checkSource": "prop_db",
+            "checkType": "two_plus,id,pep_media",
+            "confidenceLevel": 79,
+            "providerCheckID": "c8hlx36363w8",
+            "resultNotes": [
+              {
+                "kvpKey": "dob_matched",
+                "kvpType": "general.string",
+                "kvpValue": "prop_db"
+              },
+              {
+                "kvpKey": "original_checksource",
+                "kvpType": "general.string",
+                "kvpValue": "prop_db"
+              }
+            ],
+            "resultState": "CHECKED_SUCCESS_CLEAR"
+          },
+          "checkRequestedBy": "You"
+        }
+      ],
+      "dob": {
+        "dateOfBirth": "1951-01-01",
+        "yearOfBirth": "1951"
+      }
+    },
+    "entityId": "7b633b48-78cc-b510-bec9-5ca683609868",
+    "genderCheck": {
+      "gender": "F"
+    },
+    "identityDocsCheck": [
+      {
+        "checkResult": [
+          {
+            "checkProcessResults": {
+              "checkDate": "2021-01-13T00:34:29.278Z",
+              "checkId": "5c399445-52c7-59d9-500d-26841ed69c65",
+              "checkPerformedBy": "equifax",
+              "checkSource": "au-govid1",
+              "checkType": "two_plus,id,pep_media",
+              "confidenceLevel": 98,
+              "providerCheckID": "c8hlx38snk9p",
+              "resultNotes": [
+                {
+                  "kvpKey": "document_matched",
+                  "kvpType": "general.string",
+                  "kvpValue": "dvs"
+                },
+                {
+                  "kvpKey": "document_idtype",
+                  "kvpType": "general.string",
+                  "kvpValue": "DRIVERS_LICENCE"
+                },
+                {
+                  "kvpKey": "original_checksource",
+                  "kvpType": "general.string",
+                  "kvpValue": "dvs"
+                }
+              ],
+              "resultState": "CHECKED_SUCCESS_CLEAR"
+            },
+            "checkRequestedBy": "You"
+          }
+        ],
+        "idDocument": {
+          "country": "AUS",
+          "documentId": "418647e4-a86c-2530-f734-3a4f9424ae38",
+          "idExpiry": "0001-01-01",
+          "idIssued": "0001-01-01",
+          "idNumber": "N3446972",
+          "idType": "DRIVERS_LICENCE",
+          "region": "NSW"
+        }
+      }
+    ],
+    "nameCheck": {
+      "checkResult": [
+        {
+          "checkProcessResults": {
+            "checkDate": "2021-01-13T00:34:29.114Z",
+            "checkId": "5c399445-52c7-59d9-500d-26841ed69c65",
+            "checkPerformedBy": "equifax",
+            "checkSource": "fcs_number_directory",
+            "checkType": "two_plus,id,pep_media",
+            "confidenceLevel": 73,
+            "providerCheckID": "c8hlx3635kpd",
+            "resultNotes": [
+              {
+                "kvpKey": "name_matched",
+                "kvpType": "general.string",
+                "kvpValue": "fcs_number_directory"
+              },
+              {
+                "kvpKey": "original_checksource",
+                "kvpType": "general.string",
+                "kvpValue": "fcs_number_directory"
+              }
+            ],
+            "resultState": "CHECKED_SUCCESS_CLEAR"
+          },
+          "checkRequestedBy": "You"
+        },
+        {
+          "checkProcessResults": {
+            "checkDate": "2021-01-13T00:34:29.114Z",
+            "checkId": "5c399445-52c7-59d9-500d-26841ed69c65",
+            "checkPerformedBy": "equifax",
+            "checkSource": "claims_db",
+            "checkType": "two_plus,id,pep_media",
+            "confidenceLevel": 78,
+            "providerCheckID": "c8hlx3635o4u",
+            "resultNotes": [
+              {
+                "kvpKey": "name_matched",
+                "kvpType": "general.string",
+                "kvpValue": "claims_db"
+              },
+              {
+                "kvpKey": "original_checksource",
+                "kvpType": "general.string",
+                "kvpValue": "claims_db"
+              }
+            ],
+            "resultState": "CHECKED_SUCCESS_CLEAR"
+          },
+          "checkRequestedBy": "You"
+        },
+        {
+          "checkProcessResults": {
+            "checkDate": "2021-01-13T00:34:31.888Z",
+            "checkId": "5c399445-52c7-59d9-500d-26841ed69c65",
+            "checkPerformedBy": "builtin-att",
+            "checkSource": "photo comparison",
+            "checkType": "two_plus,id,pep_media,idvalidate",
+            "resultNotes": [
+              {
+                "kvpKey": "idv_reports_count",
+                "kvpType": "general.integer",
+                "kvpValue": "0"
+              },
+              {
+                "kvpKey": "message",
+                "kvpType": "general.string",
+                "kvpValue": "Attestation check completed successfully. The attestation documents are not present, but are not required"
+              },
+              {
+                "kvpKey": "attestation.idsubtype",
+                "kvpType": "general.string",
+                "kvpValue": "Photo Comparison"
+              },
+              {
+                "kvpKey": "original_checksource",
+                "kvpType": "general.string",
+                "kvpValue": "Photo Comparison"
+              }
+            ],
+            "resultState": "CHECKED_SUCCESS_CLEAR"
+          },
+          "checkRequestedBy": "You"
+        },
+        {
+          "checkProcessResults": {
+            "checkDate": "2021-01-13T00:34:31.888Z",
+            "checkId": "5c399445-52c7-59d9-500d-26841ed69c65",
+            "checkPerformedBy": "builtin-att",
+            "checkSource": "builtin",
+            "checkType": "two_plus,id,pep_media,idvalidate",
+            "resultNotes": [
+              {
+                "kvpKey": "idv_reports_count",
+                "kvpType": "general.integer",
+                "kvpValue": "0"
+              },
+              {
+                "kvpKey": "message",
+                "kvpType": "general.string",
+                "kvpValue": "Attestation check completed successfully. The attestation documents are not present, but are not required"
+              },
+              {
+                "kvpKey": "original_checksource",
+                "kvpType": "general.string",
+                "kvpValue": "builtin"
+              }
+            ],
+            "resultState": "CHECKED_SUCCESS_CLEAR"
+          },
+          "checkRequestedBy": "You"
+        },
+        {
+          "checkProcessResults": {
+            "checkDate": "2021-01-13T00:34:31.888Z",
+            "checkId": "5c399445-52c7-59d9-500d-26841ed69c65",
+            "checkPerformedBy": "builtin-att",
+            "checkSource": "id validation",
+            "checkType": "two_plus,id,pep_media,idvalidate",
+            "resultNotes": [
+              {
+                "kvpKey": "idv_reports_count",
+                "kvpType": "general.integer",
+                "kvpValue": "0"
+              },
+              {
+                "kvpKey": "message",
+                "kvpType": "general.string",
+                "kvpValue": "Attestation check completed successfully. The attestation documents are not present, but are not required"
+              },
+              {
+                "kvpKey": "attestation.idsubtype",
+                "kvpType": "general.string",
+                "kvpValue": "ID Validation"
+              },
+              {
+                "kvpKey": "original_checksource",
+                "kvpType": "general.string",
+                "kvpValue": "ID Validation"
+              }
+            ],
+            "resultState": "CHECKED_SUCCESS_CLEAR"
+          },
+          "checkRequestedBy": "You"
+        },
+        {
+          "checkProcessResults": {
+            "checkDate": "2021-01-13T00:34:31.888Z",
+            "checkId": "5c399445-52c7-59d9-500d-26841ed69c65",
+            "checkPerformedBy": "builtin-att",
+            "checkSource": "ocr comparison",
+            "checkType": "two_plus,id,pep_media,idvalidate",
+            "resultNotes": [
+              {
+                "kvpKey": "idv_reports_count",
+                "kvpType": "general.integer",
+                "kvpValue": "0"
+              },
+              {
+                "kvpKey": "attestation.idsubtype",
+                "kvpType": "general.string",
+                "kvpValue": "OCR Comparison"
+              },
+              {
+                "kvpKey": "original_checksource",
+                "kvpType": "general.string",
+                "kvpValue": "OCR Comparison"
+              }
+            ]
+          },
+          "checkRequestedBy": "You"
+        },
+        {
+          "checkProcessResults": {
+            "checkDate": "2021-01-13T00:34:29.278Z",
+            "checkId": "5c399445-52c7-59d9-500d-26841ed69c65",
+            "checkPerformedBy": "equifax",
+            "checkSource": "au-govid1",
+            "checkType": "two_plus,id,pep_media",
+            "confidenceLevel": 72,
+            "providerCheckID": "c8hlx38snk9p",
+            "resultNotes": [
+              {
+                "kvpKey": "name_matched",
+                "kvpType": "general.string",
+                "kvpValue": "dvs"
+              },
+              {
+                "kvpKey": "original_checksource",
+                "kvpType": "general.string",
+                "kvpValue": "dvs"
+              }
+            ],
+            "resultState": "CHECKED_SUCCESS_CLEAR"
+          },
+          "checkRequestedBy": "You"
+        }
+      ],
+      "name": {
+        "displayName": "JUDY B TESTTWO",
+        "familyName": "TESTTWO",
+        "givenName": "JUDY",
+        "middleName": "B"
+      }
+    }
+  },
+  "requestId": "01EVWJMM6D9B50JFA0MFQ0NGFF"
+}

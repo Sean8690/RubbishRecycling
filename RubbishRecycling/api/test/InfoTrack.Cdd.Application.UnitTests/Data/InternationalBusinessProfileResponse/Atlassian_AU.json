@@ -1,0 +1,349 @@
+﻿{
+    "CompanyProfile": {
+        "Activity": null,
+        "ActivityDeclaration": null,
+        "Addresses": [
+            {
+                "AddressInOneLine": "LEVEL 6, 341 GEORGE STREET, SYDNEY, NSW, 2000",
+                "AddressLine1": "LEVEL 6",
+                "AddressLine2": "341 GEORGE STREET",
+                "AddressLine3": "SYDNEY",
+                "AddressLine4": "NSW",
+                "AddressLine5": "2000",
+                "CityTown": "SYDNEY",
+                "Country": null,
+                "Email": null,
+                "FaxNumber": null,
+                "Line": [
+                    {
+                        "Line": "LEVEL 6",
+                        "Type": null,
+                        "TypeCode": null
+                    },
+                    {
+                        "Line": "341 GEORGE STREET",
+                        "Type": null,
+                        "TypeCode": null
+                    },
+                    {
+                        "Line": "SYDNEY",
+                        "Type": null,
+                        "TypeCode": null
+                    },
+                    {
+                        "Line": "NSW",
+                        "Type": null,
+                        "TypeCode": null
+                    },
+                    {
+                        "Line": "2000",
+                        "Type": null,
+                        "TypeCode": null
+                    }
+                ],
+                "Postcode": "2000",
+                "RegionState": "NSW",
+                "TelephoneNumber": null,
+                "Type": "Registered Office (from 16/10/2012)",
+                "TypeCode": null,
+                "WebsiteUrl": null
+            },
+            {
+                "AddressInOneLine": "LEVEL 6, 341 GEORGE STREET, SYDNEY, NSW, 2000",
+                "AddressLine1": "LEVEL 6",
+                "AddressLine2": "341 GEORGE STREET",
+                "AddressLine3": "SYDNEY",
+                "AddressLine4": "NSW",
+                "AddressLine5": "2000",
+                "CityTown": "SYDNEY",
+                "Country": null,
+                "Email": null,
+                "FaxNumber": null,
+                "Line": [
+                    {
+                        "Line": "LEVEL 6",
+                        "Type": null,
+                        "TypeCode": null
+                    },
+                    {
+                        "Line": "341 GEORGE STREET",
+                        "Type": null,
+                        "TypeCode": null
+                    },
+                    {
+                        "Line": "SYDNEY",
+                        "Type": null,
+                        "TypeCode": null
+                    },
+                    {
+                        "Line": "NSW",
+                        "Type": null,
+                        "TypeCode": null
+                    },
+                    {
+                        "Line": "2000",
+                        "Type": null,
+                        "TypeCode": null
+                    }
+                ],
+                "Postcode": "2000",
+                "RegionState": "NSW",
+                "TelephoneNumber": null,
+                "Type": "Principal Place of Business (from 02/10/2012)",
+                "TypeCode": null,
+                "WebsiteUrl": null
+            }
+        ],
+        "AgentAddress": null,
+        "AgentName": null,
+        "Aliases": {
+            "AddressLine": null
+        },
+        "AppointmentDateOfOfficial": null,
+        "Capital": null,
+        "ProviderEntityCode": null,
+        "Code": "ACN: 102443916",
+        "CompanyNameInEnglish": null,
+        "Date": null,
+        "Email": null,
+        "FaxNumber": null,
+        "FiscalCode": null,
+        "FoundationDate": null,
+        "Functions": null,
+        "Headquarters": null,
+        "KeyFigures": null,
+        "LastAnnualAccountDate": null,
+        "LegalForm": "Australian Proprietary Company Limited By Shares",
+        "LegalFormDeclaration": null,
+        "LegalFormDetails": null,
+        "LegalStatus": "Registered",
+        "MailingAddress": null,
+        "Name": "ATLASSIAN PTY LTD",
+        "Official": null,
+        "RegistrationAuthority": "This extract contains information derived from the Australian Securities and Investment Commission's (ASIC) database under section 1274A of the Corporations Act 2001. Please advise ASIC of any error which you may identify.",
+        "RegistrationAuthorityCode": null,
+        "RegistrationDate": "08/10/2002",
+        "RegistrationNumber": null,
+        "SigningDeclaration": null,
+        "SigningDeclarationDescription": null,
+        "SigningLanguage": null,
+        "Source": null,
+        "StateOfIncorporation": null,
+        "TelephoneNumber": null,
+        "VatNumber": null,
+        "VirtualId": null,
+        "WebsiteURL": null,
+        "directorAndShareDetails": {
+            "directors": [
+                {
+                    "title": "Director",
+                    "name": "MICHAEL ALEXANDER CANNON-BROOKES",
+                    "birthdate": "17/11/1979 at GREENWICH CT, UNITED STATES",
+                    "nationality": null,
+                    "directorNumber": ": ",
+                    "address1": null,
+                    "address2": null,
+                    "address3": "560 NEW SOUTH HEAD ROAD",
+                    "address4": "POINT PIPER",
+                    "address5": "NSW",
+                    "address6": null,
+                    "directorships": null,
+                    "postcode": "2027"
+                },
+                {
+                    "title": "Director",
+                    "name": "SCOTT FARQUHAR",
+                    "birthdate": "17/12/1979 at SYDNEY, NSW",
+                    "nationality": null,
+                    "directorNumber": ": ",
+                    "address1": null,
+                    "address2": null,
+                    "address3": "14 DRUMALBYN ROAD",
+                    "address4": "BELLEVUE HILL",
+                    "address5": "NSW",
+                    "address6": null,
+                    "directorships": null,
+                    "postcode": "2023"
+                },
+                {
+                    "title": "Director",
+                    "name": "GENE CHI-CHING LIU",
+                    "birthdate": "04/09/1980 at SAN FRANCISCO CALIFORNIA, UNITED STATES",
+                    "nationality": null,
+                    "directorNumber": ": ",
+                    "address1": null,
+                    "address2": "1901 MONTEREY BLVD",
+                    "address3": null,
+                    "address4": "SAN FRANCISCO CA 94127",
+                    "address5": null,
+                    "address6": "UNITED STATES",
+                    "directorships": null,
+                    "postcode": null
+                },
+                {
+                    "title": "Director",
+                    "name": "ERIKA ASHLEY FISHER",
+                    "birthdate": "20/08/1984 at PLANTATION FLORIDA, UNITED STATES",
+                    "nationality": null,
+                    "directorNumber": ": ",
+                    "address1": null,
+                    "address2": "101 CERVANTES BLVD",
+                    "address3": "APT 201",
+                    "address4": "SAN FRANCISCO CA 94123",
+                    "address5": null,
+                    "address6": "UNITED STATES",
+                    "directorships": null,
+                    "postcode": null
+                },
+                {
+                    "title": "Secretary",
+                    "name": "SCOTT FARQUHAR",
+                    "birthdate": "17/12/1979 at SYDNEY, NSW",
+                    "nationality": null,
+                    "directorNumber": ": ",
+                    "address1": null,
+                    "address2": null,
+                    "address3": "14 DRUMALBYN ROAD",
+                    "address4": "BELLEVUE HILL",
+                    "address5": "NSW",
+                    "address6": null,
+                    "directorships": null,
+                    "postcode": "2023"
+                },
+                {
+                    "title": "Secretary",
+                    "name": "GENE CHI-CHING LIU",
+                    "birthdate": "04/09/1980 at SAN FRANCISCO CALIFORNIA, UNITED STATES",
+                    "nationality": null,
+                    "directorNumber": ": ",
+                    "address1": null,
+                    "address2": "1901 MONTEREY BLVD",
+                    "address3": null,
+                    "address4": "SAN FRANCISCO CA 94127",
+                    "address5": null,
+                    "address6": "UNITED STATES",
+                    "directorships": null,
+                    "postcode": null
+                },
+                {
+                    "title": "Secretary",
+                    "name": "ERIKA ASHLEY FISHER",
+                    "birthdate": "20/08/1984 at PLANTATION FLORIDA, UNITED STATES",
+                    "nationality": null,
+                    "directorNumber": ": ",
+                    "address1": null,
+                    "address2": "101 CERVANTES BLVD",
+                    "address3": "APT 201",
+                    "address4": "SAN FRANCISCO CA 94123",
+                    "address5": null,
+                    "address6": "UNITED STATES",
+                    "directorships": null,
+                    "postcode": null
+                },
+                {
+                    "title": "Appointed Auditor",
+                    "name": "ERNST & YOUNG",
+                    "birthdate": null,
+                    "nationality": null,
+                    "directorNumber": "027495432",
+                    "address1": null,
+                    "address2": null,
+                    "address3": "680 GEORGE STREET",
+                    "address4": "SYDNEY",
+                    "address5": "NSW",
+                    "address6": null,
+                    "directorships": null,
+                    "postcode": "2000"
+                },
+                {
+                    "title": "Ultimate Holding Company",
+                    "name": "ATLASSIAN CORPORATION PLC",
+                    "birthdate": null,
+                    "nationality": null,
+                    "directorNumber": ": ",
+                    "address1": null,
+                    "address2": null,
+                    "address3": null,
+                    "address4": null,
+                    "address5": null,
+                    "address6": null,
+                    "directorships": null,
+                    "postcode": null
+                },
+                {
+                    "title": "Appointed Auditor",
+                    "name": "ERNST & YOUNG",
+                    "birthdate": null,
+                    "nationality": null,
+                    "directorNumber": "027495432",
+                    "address1": null,
+                    "address2": null,
+                    "address3": "680 GEORGE STREET",
+                    "address4": "SYDNEY",
+                    "address5": "NSW",
+                    "address6": null,
+                    "directorships": null,
+                    "postcode": "2000"
+                },
+                {
+                    "title": "Ultimate Holding Company",
+                    "name": "ATLASSIAN CORPORATION PLC",
+                    "birthdate": null,
+                    "nationality": null,
+                    "directorNumber": ": ",
+                    "address1": null,
+                    "address2": null,
+                    "address3": null,
+                    "address4": null,
+                    "address5": null,
+                    "address6": null,
+                    "directorships": null,
+                    "postcode": null
+                }
+            ],
+            "PersonsOfSignificantControl": null,
+            "CapitalReserves": null,
+            "shareHolderSummary": null,
+            "shareHolders": [
+                {
+                    "Name": "ATLASSIAN CORPORATION PTY. LTD.",
+                    "Id": null,
+                    "ShareholderType": null,
+                    "Nationality": null,
+                    "Address": "LEVEL 6, 341 GEORGE STREET, SYDNEY, NSW, 2000",
+                    "AllInfo": null,
+                    "Currency": null,
+                    "NominalValue": null,
+                    "Percentage": null,
+                    "ShareClass": "ORD",
+                    "ShareCount": null,
+                    "ShareType": "Current",
+                    "TotalShareCount": null,
+                    "TotalShareValue": null,
+                    "TotalShares": null
+                },
+                {
+                    "Name": "ATLASSIAN CORPORATION PTY. LTD.",
+                    "Id": null,
+                    "ShareholderType": null,
+                    "Nationality": null,
+                    "Address": "LEVEL 6, 341 GEORGE STREET, SYDNEY, NSW, 2000",
+                    "AllInfo": null,
+                    "Currency": null,
+                    "NominalValue": null,
+                    "Percentage": null,
+                    "ShareClass": "ORD",
+                    "ShareCount": null,
+                    "ShareType": "Current",
+                    "TotalShareCount": null,
+                    "TotalShareValue": null,
+                    "TotalShares": null
+                }
+            ]
+        },
+        "Officers": null
+    },
+    "ibTransactionId": "10736595",
+    "ibResponseCode": null,
+    "ibResponseDetails": null
+}

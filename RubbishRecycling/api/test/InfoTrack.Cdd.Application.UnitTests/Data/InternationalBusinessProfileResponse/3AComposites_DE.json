@@ -1,0 +1,52 @@
+﻿{
+    "CompanyProfile": {
+        "Activity": {
+            "ActivityDTO": [
+                {}
+            ]
+        },
+        "ActivityDeclaration": {
+            "ActivityDeclarationDTO": [
+                {}
+            ]
+        },
+        "Addresses": {
+            "Addresses": [
+                {
+                    "AddressLine1": "Kiefernweg 10",
+                    "AddressLine2": "49090 Osnabrück",
+                    "Country": "Germany",
+                    "Line": {
+                        "AddressLineDTO": [
+                            {
+                                "Line": "Kiefernweg 10"
+                            },
+                            {
+                                "Line": "49090 Osnabrück"
+                            }
+                        ]
+                    },
+                    "Type": "Address of the local main office"
+                }
+            ]
+        },
+        "Aliases": {
+            "AddressLine": null
+        },
+        "Code": "1682875",
+        "Date": "17/12/2020",
+        "FoundationDate": "1986-11-21",
+        "LegalForm": "Gesellschaft mit beschränkter Haftung (GmbH)",
+        "LegalStatus": "Normal",
+        "Name": "3A Composites GmbH",
+        "RegistrationAuthority": "District Court Osnabrück",
+        "RegistrationAuthorityCode": "439",
+        "RegistrationDate": "1986-11-21",
+        "RegistrationNumber": "HRB 15742"
+    },
+    "checkId": "3e94d1d4-c615-67c9-f160-08a478aec964",
+    "entityId": "c223e3e7-ad26-64f1-9f2d-bac4081d0536",
+    "ibRetrievalLocation": "https://data.kyckr.com/1407393884",
+    "ibTransactionId": "10721490",
+    "requestId": "01ESSC8XDPXF8E79ABTXHJGV6V"
+}

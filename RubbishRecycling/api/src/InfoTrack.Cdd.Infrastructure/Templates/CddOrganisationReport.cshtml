@@ -1,0 +1,1295 @@
+﻿@using RazorLight
+@using InfoTrack.Cdd.Infrastructure.Models.Frankie
+@using InfoTrack.Cdd.Infrastructure.Utils
+@using InfoTrack.Cdd.Application.Models
+@using InfoTrack.Cdd.Infrastructure.Models.Frankie.Extensions
+@inherits TemplatePage<TemplateModel<InternationalBusinessProfileResponse>>
+
+@model TemplateModel<InternationalBusinessProfileResponse>
+@{ var companyProfile = Model.DataModel.CompanyProfile; }
+<html>
+@{ await IncludeAsync("Shared/_Head.cshtml"); }
+
+<body>
+    <div class="pdf-container">
+        <div class="cover">
+            <div class="it-logo">
+                <img alt="InfoTrack" src="https://cf.infotrack.com.au/zenith-assets/logo-main.svg">
+            </div>
+
+            <div class="titles">
+                <span class="report-title">@Model.ReportTitle on</span>
+                <h1>
+                    @companyProfile.Name
+        </h1>
+        @if (!string.IsNullOrEmpty(companyProfile.CompanyNumber))
+                {
+        <h2>Company number: @companyProfile.GetCompanyNumber()</h2>
+                }
+        @if (Model.DataModel.CountryFlag != null)
+                {
+        <img class="flag" alt="Flag" src="@Model.DataModel.CountryFlag.ToString()">
+                }
+        @if (Model.DataModel.CountryName != null)
+                {
+        <h3>@Model.DataModel.CountryName</h3>
+                }
+        </div>
+
+        @{ var now = DateTime.Now; }
+        <p><span class="label">Date prepared:</span> @DateHelper.FormatLongDate(now) @DateHelper.FormatShortTime(now)</p>
+
+        <div class="contents">
+            <h3>Contents</h3>
+            <ul>
+
+                <li><a href="#organisation_profile">Company profile</a></li>
+
+                @if (companyProfile.HasAddressOrContactData())
+                    {
+                <li><a href="#address">Address and contact information</a></li>
+                    }
+                    else
+                    {
+                <li><i>Address and contact information (no data)</i></li>
+                    }
+
+        @if (companyProfile.HasDirectorsOrShareholders())
+                    {
+        <li><a href="#officers">Directors and shareholders</a></li>
+                    }
+                    else
+                    {
+        <li><i>Directors and shareholders (no data)</i></li>
+                    }
+
+        @if (companyProfile.HasCapital())
+                    {
+        <li><a href="#capital">Capital</a></li>
+                    }
+                    else
+                    {
+        <li><i>Capital (no data)</i></li>
+                    }
+
+        @if (companyProfile.HasActivityData())
+                    {
+        <li><a href="#activity">Activity information</a></li>
+                    }
+                    else
+                    {
+        <li><i>Activity information (no data)</i></li>
+                    }
+
+        @if (companyProfile.HasLegalForm())
+                    {
+        <li><a href="#legal_form">Legal form</a></li>
+                    }
+                    else
+                    {
+        <li><i>Legal form (no data)</i></li>
+                    }
+
+        <li><a href="#about">About KYC & AML</a></li>
+        </ul>
+        </div>
+
+        @{ await IncludeAsync("Shared/_Footer.cshtml"); }
+        
+        </div>
+
+        <!--Main data section-->
+        <section>
+
+            <h2 id="organisation_profile">Company Profile: @companyProfile.Name</h2>
+
+            <table>
+                <tbody>
+                    @if (!string.IsNullOrWhiteSpace(Model.DataModel.CountryName) || Model.DataModel.CountryFlag != null)
+                    {
+                    <tr>
+                        <td>Country</td>
+                        <td>
+                            @Model.DataModel.CountryName
+                            @if (Model.DataModel.CountryFlag != null)
+                                {
+                            <img class="flag" alt="Flag" src="@Model.DataModel.CountryFlag.ToString()">
+                                }
+                        </td>
+                    </tr>
+                    }
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.Name))
+                    {
+                    <tr>
+                        <td class="importantText">Company name</td>
+                        <td class="importantText">@companyProfile.Name</td>
+                    </tr>
+                    }
+
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.CompanyNameInEnglish))
+                    {
+                    <tr>
+                        <td>Company name (in English)</td>
+                        <td>@companyProfile.CompanyNameInEnglish</td>
+                    </tr>
+                    }
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.CompanyNumber))
+                    {
+                    <tr>
+                        <td>Company number</td>
+                        <td>@companyProfile.CompanyNumber</td>
+                    </tr>
+                    }
+                    @if (!string.Equals(companyProfile.RegistrationNumber, companyProfile.CompanyNumber, StringComparison.OrdinalIgnoreCase) &&
+                       !string.IsNullOrWhiteSpace(companyProfile.RegistrationNumber))
+                    {
+                    <tr>
+                        <td>Registration number</td>
+                        <td>@companyProfile.RegistrationNumber</td>
+                    </tr>
+                    }
+
+                    @{
+                        var registrationDate = DateHelper.TryFormatShortDate(companyProfile.RegistrationDate);
+                        var incorporationDate = DateHelper.TryFormatShortDate(companyProfile.FoundationDate);
+
+                        if (!string.IsNullOrWhiteSpace(companyProfile.RegistrationDate))
+                        {
+                        <tr>
+                            <td>Registration date</td>
+                            <td>@registrationDate</td>
+                        </tr>
+                        }
+                        if (!string.Equals(registrationDate, incorporationDate, StringComparison.OrdinalIgnoreCase) && !string.IsNullOrWhiteSpace(companyProfile.FoundationDate))
+                        {
+                        <tr>
+                            <td>Foundation/incorporation date</td>
+                            <td>@incorporationDate</td>
+                        </tr>
+                        }
+                    }
+
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.Aliases?.AddressLine))
+                    {
+                    <tr>
+                        <td>Aliases</td>
+                        <td>@companyProfile.Aliases.AddressLine</td>
+                    </tr>
+                    }
+
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.VatNumber))
+                    {
+                    <tr>
+                        <td>VAT number</td>
+                        <td>@companyProfile.VatNumber</td>
+                    </tr>
+                    }
+
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.LegalForm))
+                    {
+                    <tr>
+                        <td>Legal form</td>
+                        <td>@companyProfile.LegalForm</td>
+                    </tr>
+                    }
+
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.FiscalCode))
+                    {
+                    <tr>
+                        <td>Fiscal code</td>
+                        <td>@companyProfile.FiscalCode</td>
+                    </tr>
+                    }
+
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.AgentName))
+                    {
+                    <tr>
+                        <td>Agent name</td>
+                        <td>@companyProfile.AgentName</td>
+                    </tr>
+                    }
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.AgentAddress))
+                    {
+                    <tr>
+                        <td>Agent address</td>
+                        <td>@companyProfile.AgentAddress</td>
+                    </tr>
+                    }
+
+
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.AppointmentDateOfOfficial))
+                    {
+                    <tr>
+                        <td>Appointment date of official</td>
+                        <td>@DateHelper.TryFormatShortDate(companyProfile.AppointmentDateOfOfficial)</td>
+                    </tr>
+                    }
+                    @if (companyProfile.Functions != null && companyProfile.Functions.Count > 0)
+                    {
+                    <tr>
+                        <td>Functions</td>
+                        <td>
+                            @foreach (var function in companyProfile.Functions)
+                                {
+                            <span>@function</span><br />
+                                }
+                        </td>
+                    </tr>
+                    }
+                    @if (companyProfile.KeyFigures != null && companyProfile.KeyFigures.Count > 0)
+                    {
+                    <tr>
+                        <td>Key figures</td>
+                        <td>
+                            @foreach (var figure in companyProfile.KeyFigures)
+                                {
+                            <span>@figure</span><br />
+                                }
+                        </td>
+                    </tr>
+                    }
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.LastAnnualAccountDate) && companyProfile.LastAnnualAccountDate != "-") // blame Singapore
+                    {
+                    <tr>
+                        <td>Last annual account date</td>
+                        <td>@DateHelper.TryFormatShortDate(companyProfile.LastAnnualAccountDate)</td>
+                    </tr>
+                    }
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.LegalStatus))
+                    {
+                    <tr>
+                        <td>Company status</td>
+                        <td>@companyProfile.LegalStatus</td>
+                    </tr>
+                    }
+                    @if (companyProfile.Official != null)
+                    {
+                    <tr>
+                        <td>Official</td>
+                        <td>@(companyProfile.Official.Value ? "yes" : "no")</td>
+                    </tr>
+                    }
+
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.SigningDeclaration))
+                    {
+                    <tr>
+                        <td>Signing declaration</td>
+                        <td>@companyProfile.SigningDeclaration</td>
+                    </tr>
+                    }
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.SigningDeclarationDescription))
+                    {
+                    <tr>
+                        <td>Signing declaration description</td>
+                        <td>@companyProfile.SigningDeclarationDescription</td>
+                    </tr>
+                    }
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.SigningLanguage))
+                    {
+                    <tr>
+                        <td>Signing language</td>
+                        <td>@companyProfile.SigningLanguage</td>
+                    </tr>
+                    }
+
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.StateOfIncorporation))
+                    {
+                    <tr>
+                        <td>State of incorporation</td>
+                        <td>@companyProfile.StateOfIncorporation</td>
+                    </tr>
+                    }
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.Source))
+                    {
+                    <tr>
+                        <td>Source</td>
+                        <td>@companyProfile.Source</td>
+                    </tr>
+                    }
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.VirtualId))
+                    {
+                    <tr>
+                        <td>Virtual id</td>
+                        <td>@companyProfile.VirtualId</td>
+                    </tr>
+                    }
+
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.RegistrationAuthority))
+                    {
+                    <tr>
+                        <td>Registration authority</td>
+                        <td>@companyProfile.RegistrationAuthority</td>
+                    </tr>
+                    }
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.RegistrationAuthorityCode))
+                    {
+                    <tr>
+                        <td>Registration authority code</td>
+                        <td>@companyProfile.RegistrationAuthorityCode</td>
+                    </tr>
+                    }
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.Date))
+                    {
+                    <tr>
+                        <td>Data retrieval date</td>
+                        <td>@DateHelper.TryFormatShortDate(companyProfile.Date)</td>
+
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </section>
+
+        <!--Subsection: Addresses-->
+        <section>
+            <h2 id="address">Address and Contact Information</h2>
+            @if (!companyProfile.HasAddressOrContactData())
+            {
+            <p><i>No data found.</i></p>
+            }
+            else
+            {
+                var hasAnyEmail = companyProfile.HasAnyEmail();
+                var hasAnyPhone = companyProfile.HasAnyPhone();
+                var hasAnyFax = companyProfile.HasAnyFax();
+                var hasAnyWebsite = companyProfile.HasAnyWebsite();
+            <table>
+                <thead>
+                    <tr>
+                        <th>Address</th>
+                        <th>Type</th>
+                        @if (hasAnyEmail)
+                        {
+                            <th>Email</th>
+                        }
+                        @if (hasAnyPhone || hasAnyFax)
+                        {
+                            <th>Phone/Fax</th>
+                        }
+                        @if (hasAnyWebsite)
+                        {
+                            <th>Website</th>
+                        }
+                    </tr>
+
+                </thead>
+                <tbody class="smlText">
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.Headquarters))
+                    {
+                        <tr>
+                            <td>@companyProfile.Headquarters</td>
+                            <td>Headquarters</td>
+                        </tr>
+                    }
+                    @if (companyProfile.Addresses != null)
+                    {
+                        foreach (var address in companyProfile.Addresses.Where(a => a.HasData()))
+                        {
+                            <tr>
+                                <td>@address.ToAddressString()</td>
+                                <td>@address.ToTypeString()</td>
+                                @if (hasAnyEmail)
+                                {
+                                    <td>@address.Email</td>
+                                }
+                                @if (hasAnyPhone || hasAnyFax)
+                                {
+                                    <td>
+                                        @if (!string.IsNullOrWhiteSpace(address.TelephoneNumber))
+                                        {
+                                            <span>P: @address.TelephoneNumber</span><br />
+                                        }
+                                        @if (!string.IsNullOrWhiteSpace(address.FaxNumber))
+                                        {
+                                            <span>F: @address.FaxNumber</span>
+                                        }
+                                    </td>
+                                }
+                                @if (hasAnyWebsite)
+                                {
+                                    <td>@address.WebsiteUrl</td>
+                                }
+                            </tr>
+                        }
+                    }
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.MailingAddress))
+                    {
+                        <tr>
+
+                            <td>@companyProfile.MailingAddress</td>
+                            <td>Mailing address</td>
+                            @if (hasAnyEmail)
+                            {
+                                <td></td>
+                            }
+                            @if (hasAnyPhone || hasAnyFax)
+                            {
+                                <td></td>
+                            }
+                            @if (hasAnyWebsite)
+                            {
+                                <td></td>
+                            }
+                        </tr>
+                    }
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.TelephoneNumber))
+                    {
+                        <tr>
+                            <td>@*address*@</td>
+                            <td>Phone</td>
+                            @if (hasAnyEmail)
+                            {
+                                <td>@*email*@</td>
+                            }
+                            <td>P: @companyProfile.TelephoneNumber</td>
+                            @if (hasAnyWebsite)
+                            {
+                                <td></td>
+                            }
+                        </tr>
+                    }
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.FaxNumber))
+                    {
+                        <tr>
+                            <td>@*address*@</td>
+                            <td>Fax</td>
+                            @if (hasAnyEmail)
+                            {
+                                <td>@*email*@</td>
+                            }
+                            <td>F: @companyProfile.FaxNumber</td>
+                            @if (hasAnyWebsite)
+                            {
+                                <td></td>
+                            }
+                        </tr>
+                    }
+                        @if (!string.IsNullOrWhiteSpace(companyProfile.Email))
+                        {
+                            <tr>
+                                <td>@*address*@</td>
+                                <td>Email</td>
+                                <td>@companyProfile.Email</td>
+                                @if (hasAnyPhone || hasAnyFax)
+                                {
+                                    <td></td>
+                                }
+                                @if (hasAnyWebsite)
+                                {
+                                    <td></td>
+                                }
+                            </tr>
+                        }
+                        @if (!string.IsNullOrWhiteSpace(companyProfile.WebsiteUrl))
+                        {
+                            <tr>
+                                <td>@*address*@</td>
+                                <td>Website</td>
+                                @if (hasAnyEmail)
+                                {
+                                    <td>@*email*@</td>
+                                }
+                                @if (hasAnyPhone || hasAnyFax)
+                                {
+                                    <td>@*phone/fax*@</td>
+                                }
+                                <td>@companyProfile.WebsiteUrl</td>
+                            </tr>
+                        }
+                </tbody>
+            </table>
+            }
+        </section>
+
+
+        <!--Subsection: Directors and shareholders-->
+        <section>
+            <h2 id="officers">Directors and shareholders</h2>
+            @if (!companyProfile.HasDirectorsOrShareholders())
+            {
+            <p><i>No data found.</i></p>
+            }
+            else
+            {
+            @if (companyProfile.DirectorAndShareDetails != null)
+                {
+            <h4>Directors</h4>
+                    if (companyProfile.DirectorAndShareDetails.Directors == null || companyProfile.DirectorAndShareDetails.Directors.Count <= 0)
+                    {
+            <p><i>No data found.</i></p>
+                    }
+                    else
+                    {
+                        var i = 0;
+                        var hasAnyTitle = companyProfile.DirectorAndShareDetails.Directors.HasAnyTitle(companyProfile.Name, companyProfile.GetCompanyNumber());
+                        var hasAnyAppointedDate = companyProfile.DirectorAndShareDetails.Directors.HasAnyAppointedDate(companyProfile.Name, companyProfile.GetCompanyNumber());
+                        var hasAnyBirthdate = companyProfile.DirectorAndShareDetails.Directors.HasAnyBirthdate();
+                        var hasAnyNationality = companyProfile.DirectorAndShareDetails.Directors.HasAnyNationality();
+                        var hasAnyDirectorNumber = companyProfile.DirectorAndShareDetails.Directors.HasAnyDirectorNumber();
+            <table>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Name</th>
+                        @if (hasAnyTitle)
+                                    {
+                        <th>Title</th>
+                                    }
+                        @if (hasAnyAppointedDate)
+                                    {
+                        <th>Appointed date</th>
+                                    }
+                        @if (hasAnyBirthdate)
+                                    {
+                        <th>Birthdate</th>
+                                    }
+                        @if (hasAnyNationality)
+                                    {
+                        <th>Nationality</th>
+                                    }
+                        @if (hasAnyDirectorNumber)
+                                    {
+                        <th>Director number</th>
+                                    }
+                        <th>Address</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var director in companyProfile.DirectorAndShareDetails.Directors)
+                                {
+                    <tr>
+                        <td class="smlText">@(++i)</td>
+                        <td>@director.Name</td>
+                        @if (hasAnyTitle)
+                                        {
+                        <td>@director.GetTitle(companyProfile.Name, companyProfile.GetCompanyNumber())</td>
+                                        }
+                        @if (hasAnyAppointedDate)
+                                    {
+                        <td>@director.GetAppointedDate(companyProfile.Name, companyProfile.GetCompanyNumber())</td>
+                                    }
+                        @if (hasAnyBirthdate)
+                                        {
+                        <td>@DateHelper.TryFormatShortDate(director.Birthdate)</td>
+                                        }
+                        @if (hasAnyNationality)
+                                        {
+                        <td>@director.Nationality</td>
+                                        }
+                        @if (hasAnyDirectorNumber)
+                                        {
+                        <td>
+                            @(director.DirectorNumber != ": " ? director.DirectorNumber : null) @*blame asic :P*@
+                        </td>
+                                        }
+                        <td>
+                            @if (!string.IsNullOrWhiteSpace(director.Address1))
+                                            {
+                            <span>@director.Address1</span><br />
+                                            }
+                            @if (!string.IsNullOrWhiteSpace(director.Address2))
+                                            {
+                            <span>@director.Address2</span><br />
+                                            }
+                            @if (!string.IsNullOrWhiteSpace(director.Address3))
+                                            {
+                            <span>@director.Address3</span><br />
+                                            }
+                            @if (!string.IsNullOrWhiteSpace(director.Address4))
+                                            {
+                            <span>@director.Address4</span><br />
+                                            }
+                            @if (!string.IsNullOrWhiteSpace(director.Address5))
+                                            {
+                            <span>@director.Address5</span><br />
+                                            }
+                            @if (!string.IsNullOrWhiteSpace(director.Address6))
+                                            {
+                            <span>@director.Address6</span><br />
+                                            }
+                            @if (!string.IsNullOrWhiteSpace(director.Postcode))
+                                            {
+                            <span>@director.Postcode</span><br />
+                                            }
+                        </td>
+                    </tr>
+                                      var uniqueDirectorships = director.UniqueDirectorships(companyProfile.Name, companyProfile.GetCompanyNumber());
+                                    if (uniqueDirectorships != null && uniqueDirectorships.Any())
+                                    {
+                    <tr>
+                        <td></td>
+                        <td colspan="6">
+                            <h5>Other directorships:</h5>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Company name</th>
+                                        <th>Company number</th>
+                                        <th>Company status</th>
+                                        <th>Function</th>
+                                        <th>Appointed date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var directorship in uniqueDirectorships)
+                                                        {
+                                    <tr>
+                                        <td>@directorship.CompanyName</td>
+                                        <td>@directorship.CompanyNumber</td>
+                                        <td>@directorship.CompanyStatus</td>
+                                        <td>@directorship.Function</td>
+                                        <td>@DateHelper.TryFormatShortDate(directorship.AppointedDate)</td>
+                                    </tr>
+                                                        }
+
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                                    }
+                                }
+                </tbody>
+            </table>
+                    }
+
+            <h4>Persons of significant control</h4>
+                    if (companyProfile.DirectorAndShareDetails?.PersonsOfSignificantControl == null || companyProfile.DirectorAndShareDetails.PersonsOfSignificantControl.Count <= 0)
+                    {
+            <p><i>No data found.</i></p>
+                    }
+                    else
+                    {
+                        var hasMultiple = companyProfile.DirectorAndShareDetails.PersonsOfSignificantControl.Count > 1;
+                        var i = 0;
+            <table>
+                <thead>
+                    <tr>
+                        @if (hasMultiple)
+                                    {
+                        <th>No</th>
+                                    }
+                        <th>Name</th>
+                        <th>Kind</th>
+                        <th>Nationality</th>
+                        <th>Country of residence</th>
+                        <th>Address</th>
+                        <th>Ceased on</th>
+                        <th>Date of birth</th>
+                        <th>Notified on</th>
+                        <th>Nature of control</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var psc in companyProfile.DirectorAndShareDetails.PersonsOfSignificantControl)
+                                {
+                    <tr>
+                        @if (hasMultiple)
+                                        {
+                        <td class="smlText">@(++i)</td>
+                                        }
+                        <td>@psc.Name</td>
+                        <td>@psc.Kind</td>
+                        <td>@psc.Nationality</td>
+                        <td>@psc.CountryOfResidence</td>
+                        <td>@psc.Address</td>
+                        <td>@psc.CeasedOn</td>
+                        <td>@psc.DateOfBirth()</td>
+                        <td>@psc.NotifiedOn</td>
+                        <td>
+                            @if (psc.NatureOfControl != null && psc.NatureOfControl.Count > 0)
+                                            {
+                                                foreach (var nature in psc.NatureOfControl)
+                                                {
+                            <span>@nature</span><br />
+                                                }
+                                            }
+                        </td>
+                    </tr>
+                                }
+                </tbody>
+            </table>
+                    }
+
+                    if (companyProfile.DirectorAndShareDetails.CapitalReserves != null)
+                    {
+            <h4>Capital reserves</h4>
+            <table>
+                <tbody>
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.DirectorAndShareDetails.CapitalReserves.CapReserves))
+                                {
+                    <tr>
+                        <td>Capital reserves</td>
+                        <td>@companyProfile.DirectorAndShareDetails.CapitalReserves.CapReserves</td>
+                    </tr>
+                                }
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.DirectorAndShareDetails.CapitalReserves.NetWorth))
+                                {
+                    <tr>
+                        <td>Net worth</td>
+                        <td>@companyProfile.DirectorAndShareDetails.CapitalReserves.NetWorth</td>
+                    </tr>
+                                }
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.DirectorAndShareDetails.CapitalReserves.PaidUpEquity))
+                                {
+                    <tr>
+                        <td>Paid-up equity</td>
+                        <td>@companyProfile.DirectorAndShareDetails.CapitalReserves.PaidUpEquity</td>
+                    </tr>
+                                }
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.DirectorAndShareDetails.CapitalReserves.ProfitLossReserve))
+                                {
+                    <tr>
+                        <td>Profit loss reserve</td>
+                        <td>@companyProfile.DirectorAndShareDetails.CapitalReserves.ProfitLossReserve</td>
+                    </tr>
+                                }
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.DirectorAndShareDetails.CapitalReserves.Reserves))
+                                {
+                    <tr>
+                        <td>Rserves</td>
+                        <td>@companyProfile.DirectorAndShareDetails.CapitalReserves.Reserves</td>
+                    </tr>
+                                }
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.DirectorAndShareDetails.CapitalReserves.RevaluationReserve))
+                                {
+                    <tr>
+                        <td>Reevaluation reserve</td>
+                        <td>@companyProfile.DirectorAndShareDetails.CapitalReserves.RevaluationReserve</td>
+                    </tr>
+                                }
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.DirectorAndShareDetails.CapitalReserves.ShareholderFunds))
+                                {
+                    <tr>
+                        <td>Shareholder funds</td>
+                        <td>@companyProfile.DirectorAndShareDetails.CapitalReserves.ShareholderFunds</td>
+                    </tr>
+                                }
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.DirectorAndShareDetails.CapitalReserves.SundryReserves))
+                                {
+                    <tr>
+                        <td>Sundry reserves</td>
+                        <td>@companyProfile.DirectorAndShareDetails.CapitalReserves.SundryReserves</td>
+                    </tr>
+                                }
+                </tbody>
+            </table>
+                    }
+
+            <h4>Shareholders</h4>
+            if (!string.IsNullOrWhiteSpace(companyProfile.DirectorAndShareDetails.ShareholderSummary?.ShareCapital))
+            {
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>Share capital</td>
+                            <td>@companyProfile.DirectorAndShareDetails.ShareholderSummary?.ShareCapital</td>
+                        </tr>
+                    </tbody>
+                </table>
+            }
+
+                    if (companyProfile.DirectorAndShareDetails.Shareholders == null || companyProfile.DirectorAndShareDetails.Shareholders.Count <= 0)
+                    {
+            <p><i>No data found.</i></p>
+                    }
+                    else
+                    {
+                        var i = 0;
+                        var hasMultiple = companyProfile.DirectorAndShareDetails.Shareholders.Count > 1;
+                        var hasAnyId = companyProfile.DirectorAndShareDetails.Shareholders.HasAnyId();
+                        var hasAnyType = companyProfile.DirectorAndShareDetails.Shareholders.HasAnyType();
+                        var hasAnyNationality = companyProfile.DirectorAndShareDetails.Shareholders.HasAnyNationality();
+                        var hasAnyAddress = companyProfile.DirectorAndShareDetails.Shareholders.HasAnyAddress();
+                        var hasAnyAllInfo = companyProfile.DirectorAndShareDetails.Shareholders.HasAnyAllInfo();
+                        var hasAnyCurrency = companyProfile.DirectorAndShareDetails.Shareholders.HasAnyCurrency();
+                        var hasAnyNominalValue = companyProfile.DirectorAndShareDetails.Shareholders.HasAnyNominalValue();
+                        var hasAnyPercentage = companyProfile.DirectorAndShareDetails.Shareholders.HasAnyPercentage();
+                        var hasAnyShareClass = companyProfile.DirectorAndShareDetails.Shareholders.HasAnyShareClass();
+                        var hasAnyShareCount = companyProfile.DirectorAndShareDetails.Shareholders.HasAnyShareCount();
+                        var hasAnyShareType = companyProfile.DirectorAndShareDetails.Shareholders.HasAnyShareType();
+                        var hasAnyTotalShareCount = companyProfile.DirectorAndShareDetails.Shareholders.HasAnyTotalShareCount();
+                        var hasAnyTotalShareValue = companyProfile.DirectorAndShareDetails.Shareholders.HasAnyTotalShareValue();
+                        var hasAnyTotalShares = companyProfile.DirectorAndShareDetails.Shareholders.HasAnyTotalShares();
+            <table>
+                <thead>
+                    <tr>
+                        @if (hasMultiple)
+                                    {
+                        <th>No</th>
+                                    }
+                        <th>Name</th>
+                        @if (hasAnyId)
+                                    {
+                        <th>Id</th>
+                                    }
+                        @if (hasAnyType)
+                                    {
+                        <th>Type</th>
+                                    }
+                        @if (hasAnyNationality)
+                                    {
+                        <th>Nationality</th>
+                                    }
+                        @if (hasAnyAddress)
+                                    {
+                        <th>Address</th>
+                                    }
+                        @if (hasAnyAllInfo)
+                                    {
+                        <th>All info</th>
+                                    }
+                        @if (hasAnyCurrency)
+                                    {
+                        <th>Currency</th>
+                                    }
+                        @if (hasAnyNominalValue)
+                                    {
+                        <th>Nominal value</th>
+                                    }
+                        @if (hasAnyPercentage)
+                                    {
+                        <th>Percentage</th>
+                                    }
+                        @if (hasAnyShareClass)
+                                    {
+                        <th>Share class</th>
+                                    }
+                        @if (hasAnyShareCount)
+                                    {
+                        <th>Share count</th>
+                                    }
+                        @if (hasAnyShareType)
+                                    {
+                        <th>Share type</th>
+                                    }
+                        @if (hasAnyTotalShareCount)
+                                    {
+                        <th>Total shares count</th>
+                                    }
+                        @if (hasAnyTotalShareValue)
+                                    {
+                        <th>Total shares value</th>
+                                    }
+                        @if (hasAnyTotalShares)
+                                    {
+                        <th>Total shares</th>
+                                    }
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @foreach (var shareholder in companyProfile.DirectorAndShareDetails.Shareholders)
+                                {
+                    <tr>
+                        @if (hasMultiple)
+                                        {
+                        <td class="smlText">@(++i)</td>
+                                        }
+                        <td>@shareholder.Name</td>
+                        @if (hasAnyId)
+                                        {
+                        <td>@shareholder.Id</td>
+                                        }
+                        @if (hasAnyType)
+                                        {
+                        <td>@shareholder.ShareholderType</td>
+                                        }
+                        @if (hasAnyNationality)
+                                        {
+                        <td>@shareholder.Nationality</td>
+                                        }
+                        @if (hasAnyAddress)
+                                        {
+                        <td>@shareholder.Address</td>
+                                        }
+                        @if (hasAnyAllInfo)
+                                        {
+                        <td>@shareholder.AllInfo</td>
+                                        }
+                        @if (hasAnyCurrency)
+                                        {
+                        <td>@shareholder.Currency</td>
+                                        }
+                        @if (hasAnyNominalValue)
+                                        {
+                        <td>@shareholder.NominalValue</td>
+                                        }
+                        @if (hasAnyPercentage)
+                                        {
+                        <td>@shareholder.Percentage</td>
+                                        }
+                        @if (hasAnyShareClass)
+                                        {
+                        <td>@shareholder.ShareClass</td>
+                                        }
+                        @if (hasAnyShareCount)
+                                        {
+                        <td>@shareholder.ShareCount</td>
+                                        }
+                        @if (hasAnyShareType)
+                                        {
+                        <td>@shareholder.ShareType</td>
+                                        }
+                        @if (hasAnyTotalShareCount)
+                                        {
+                        <td>@shareholder.TotalShareCount</td>
+                                        }
+                        @if (hasAnyTotalShareValue)
+                                        {
+                        <td>@shareholder.TotalShareValue</td>
+                                        }
+                        @if (hasAnyTotalShares)
+                                        {
+                        <td>@shareholder.TotalShares</td>
+                                        }
+                    </tr>
+                                }
+                </tbody>
+            </table>
+                    }
+                }
+
+            @if (companyProfile.Officers != null && companyProfile.Officers.Count > 0)
+                {
+                    var i = 0;
+                    var hasMultiple = companyProfile.Officers.Count > 1;
+            <table>
+                <thead>
+                    <tr>
+                        @if (hasMultiple)
+                                {
+                        <th>No</th>
+                                }
+                        <th>Name</th>
+                        <th>Title</th>
+                        <th>Type</th>
+                        <th>Date</th>
+                        <th>Address</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @foreach (var officer in companyProfile.Officers)
+                            {
+                    <tr>
+                        @if (hasMultiple)
+                                    {
+                        <td class="smlText">@(++i)</td>
+                                    }
+                        <td>@officer.Name</td>
+                        <td>@officer.Title</td>
+                        <td>@officer.Type</td>
+                        <td>@officer.Date</td>
+                        <td>
+                            @if (!string.IsNullOrWhiteSpace(officer.Address))
+                                        {
+                            @officer.Address<br />
+                                        }
+                            @if (!string.IsNullOrWhiteSpace(officer.MailingAddress))
+                                        {
+                            <span>Mailing address:</span>
+                            @officer.MailingAddress<br />
+                                        }
+                            @if (officer.BusinessAddress != null && officer.BusinessAddress.Count > 0)
+                                        {
+                                            foreach (var address in officer.BusinessAddress)
+                                            {
+                            <span>Business address:</span>
+                            @address<br />
+                                            }
+                                        }
+                        </td>
+                    </tr>
+                            }
+                </tbody>
+            </table>
+                }
+            }
+        </section>
+
+        <!--Subsection: Capital-->
+        <section>
+            <h2 id="capital">Capital</h2>
+            @if (!companyProfile.HasCapital())
+            {
+            <p><i>No data found.</i></p>
+            }
+            else
+            {
+                var i = 0;
+                var hasMultiple = companyProfile.Capital.Count > 1;
+                var hasAnyAmount = companyProfile.Capital.HasAnyAmount();
+                var hasAnyCurrency = companyProfile.Capital.HasAnyCurrency();
+                var hasAnyType = companyProfile.Capital.HasAnyType();
+                var hasAnyTypeCode = companyProfile.Capital.HasAnyTypeCode();
+            <table>
+                <thead>
+                    <tr>
+                        @if (hasMultiple)
+                            {
+                        <th>No</th>
+                            }
+                        @if (hasAnyAmount)
+                            {
+                        <th>Issued share capital<br />(amount)</th>
+                            }
+                        @if (hasAnyCurrency)
+                            {
+                        <th>Currency</th>
+                            }
+                        @if (hasAnyType)
+                            {
+                        <th>Type</th>
+                            }
+                        @if (hasAnyTypeCode)
+                            {
+                        <th>TypeCode</th>
+                            }
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var capital in companyProfile.Capital)
+                        {
+                    <tr>
+                        @if (hasMultiple)
+                                {
+                        <td class="smlText">@(++i)</td>
+                                }
+                        @if (hasAnyAmount)
+                                {
+                        <td>@capital.Amount</td>
+                                }
+                        @if (hasAnyCurrency)
+                                {
+                        <td>@capital.Currency</td>
+                                }
+                        @if (hasAnyType)
+                                {
+                        <td>@capital.Type</td>
+                                }
+                        @if (hasAnyTypeCode)
+                                {
+                        <td>@capital.TypeCode</td>
+                                }
+                    </tr>
+                        }
+                </tbody>
+            </table>
+            }
+        </section>
+
+
+        <!--Subsection: Activities-->
+        <section>
+            <h2 id="activity">Activity information</h2>
+            @if (!companyProfile.HasActivityData())
+            {
+            <p><i>No data found.</i></p>
+            }
+            else
+            {
+            @if (companyProfile.Activities != null && companyProfile.Activities.Count > 0)
+                {
+            <h3>Activities</h3>
+            <table>
+                <thead>
+                    <tr>
+                        @if (companyProfile.Activities.HasAnyCode())
+                                {
+                        <th>Code</th>
+                                }
+                        @if (companyProfile.Activities.HasAnyDescription())
+                                {
+                        <th>Description</th>
+                                }
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @foreach (var activity in companyProfile.Activities)
+                            {
+                    <tr>
+                        @if (companyProfile.Activities.HasAnyCode() && activity.Code != "-") // singapore
+                                    {
+                        <td>@activity.Code</td>
+                                    }
+                        @if (companyProfile.Activities.HasAnyDescription() && activity.Code != "-") // singapore
+                                    {
+                        <td>@activity.Description</td>
+                                    }
+                    </tr>
+                            }
+                </tbody>
+            </table>
+                }
+
+            @if (companyProfile.ActivityDeclarations != null && companyProfile.ActivityDeclarations.Count > 0)
+                {
+            <h3>Activity declarations</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        @if (companyProfile.ActivityDeclarations.HasAnyDeclaration())
+                                {
+                        <th>Declaration</th>
+                                }
+                        @if (companyProfile.ActivityDeclarations.HasAnyDescription())
+                                {
+                        <th>Description</th>
+                                }
+                        @if (companyProfile.ActivityDeclarations.HasAnyLanguage())
+                                {
+                        <th>Language</th>
+                                }
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @foreach (var activity in companyProfile.ActivityDeclarations)
+                            {
+                    <tr>
+                        @if (companyProfile.ActivityDeclarations.HasAnyDeclaration())
+                                    {
+                        <td>@activity.Declaration</td>
+                                    }
+                        @if (companyProfile.ActivityDeclarations.HasAnyDescription())
+                                    {
+                        <td>@activity.DeclarationDescription</td>
+                                    }
+                        @if (companyProfile.ActivityDeclarations.HasAnyLanguage())
+                                    {
+                        <td>@activity.Language</td>
+                                    }
+                    </tr>
+                            }
+                </tbody>
+            </table>
+                }
+            }
+        </section>
+
+        <!--Subsection: Legal form-->
+        <section>
+            <h2 id="legal_form">Legal form</h2>
+            @if (!companyProfile.HasLegalForm())
+            {
+            <p><i>No data found.</i></p>
+            }
+            else
+            {
+            <table>
+                <thead>
+                    <tr>
+                        <th>Label</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.LegalForm))
+                        {
+                    <tr>
+                        <td>Legal form</td>
+                        <td>@companyProfile.LegalForm</td>
+                    </tr>
+                        }
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.LegalFormDeclaration))
+                        {
+                    <tr>
+                        <td>Legal form declaration</td>
+                        <td>@companyProfile.LegalFormDeclaration</td>
+                    </tr>
+                        }
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.LegalFormDetails?.Basis))
+                        {
+                    <tr>
+                        <td>Basis</td>
+                        <td>@companyProfile.LegalFormDetails.Basis</td>
+                    </tr>
+                        }
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.LegalFormDetails?.Capital))
+                        {
+                    <tr>
+                        <td>Capital</td>
+                        <td>@companyProfile.LegalFormDetails.Capital</td>
+                    </tr>
+                        }
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.LegalFormDetails?.Comments))
+                        {
+                    <tr>
+                        <td>Comments</td>
+                        <td>@companyProfile.LegalFormDetails.Comments</td>
+                    </tr>
+                        }
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.LegalFormDetails?.Control))
+                        {
+                    <tr>
+                        <td>Control</td>
+                        <td>@companyProfile.LegalFormDetails.Control</td>
+                    </tr>
+                        }
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.LegalFormDetails?.Incorp))
+                        {
+                    <tr>
+                        <td>Incorp</td>
+                        <td>@companyProfile.LegalFormDetails.Incorp</td>
+                    </tr>
+                        }
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.LegalFormDetails?.Partner))
+                        {
+                    <tr>
+                        <td>Partner</td>d
+                        <td>@companyProfile.LegalFormDetails.Partner</td>
+                    </tr>
+                        }
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.LegalFormDetails?.Responsibility))
+                        {
+                    <tr>
+                        <td>Responsibility</td>
+                        <td>@companyProfile.LegalFormDetails.Responsibility</td>
+                    </tr>
+                        }
+                    @if (!string.IsNullOrWhiteSpace(companyProfile.LegalFormDetails?.Stocks))
+                        {
+                    <tr>
+                        <td>Stocks</td>
+                        <td>@companyProfile.LegalFormDetails.Stocks</td>
+                    </tr>
+                        }
+                </tbody>
+            </table>
+            }
+        </section>
+
+
+
+        <!--Generic document disclaimer-->
+        <section>
+            <div class="disclaimer">
+                <h2 id="about">Product Disclaimer</h2>
+                <p>
+                    All data presented through the Kyckr service is retrieved by means of direct access gateways
+                    to the various registries. The content of such data, as well as the currency and accuracy of such data, is
+                    reflective of the data as it was retrieved from the particular registry. Kyckr makes no changes to the content
+                    of the data, except to reformat it into a more easily readable presentation. While Kyckr has constructed this
+                    search to be as reliable as is practical, access to any particular government database may be subject to
+                    unannounced and/or unexpected downtime that is beyond the control of Kyckr. Furthermore, while Kyckr
+                    makes every effort to access, present, or transmit the data in an accurate and timely manner as it currently
+                    resides on the various registry databases, it makes no representations of any kind to either the accuracy or
+                    currency of the data displayed or transmitted. Kyckr disclaims any and all liabilities of any nature arising from
+                    the use of, or reliance upon the search results by a subscriber. The various agencies responsible for hosting
+                    the databases are the definitive authority of the content of all records displayed through their systems. Any
+                    questions concerning such content should be answered by securing certified copies of such records from
+                    their original source.
+                </p>
+            </div>
+            <p class="end">End of report.</p>
+        </section>
+
+
+
+    </div>
+    <!--<div class="footer">International Company Report on <em>@companyProfile.Name</em></div>-->
+
+</body>
+</html>

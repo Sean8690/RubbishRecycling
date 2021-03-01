@@ -1,0 +1,13 @@
+{
+  "path": "/cdd*",
+  "healthCheckPath": "/cdd/ping",
+  "policyStatements": [
+    {
+      "Resource": "*",
+      "Effect": "Allow",
+      "Action": [
+        "states:StartExecution"
+      ]
+    }
+  ]
+}

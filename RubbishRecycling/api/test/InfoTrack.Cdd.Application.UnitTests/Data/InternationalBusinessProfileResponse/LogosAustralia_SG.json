@@ -1,0 +1,138 @@
+﻿{
+  "CompanyProfile": {
+    "Activity": {
+      "ActivityDTO": [
+        {
+          "Code": "64202",
+          "Description": "Other holding companies"
+        },
+        {
+          "Code": "-",
+          "Description": "-"
+        }
+      ]
+    },
+    "Addresses": {
+      "Addresses": [
+        {
+          "AddressInOneLine": "50 COLLYER QUAY #05-05 OUE BAYFRONT SINGAPORE 049321"
+        }
+      ]
+    },
+    "Capital": {
+      "CapitalDTO": [
+        {
+          "Ammount": "207,062,876",
+          "Currency": "SINGAPORE, DOLLARS",
+          "Type": "Ordinary"
+        }
+      ]
+    },
+    "Code": "201937742Z",
+    "Date": "Thu, 17 Dec 2020 22:15:10 GMT",
+    "LastAnnualAccountDate": "-",
+    "LegalFormDeclaration": "PRIVATE COMPANY LIMITED BY SHARES",
+    "LegalStatus": "LIVE COMPANY",
+    "Name": "LOGOS AUSTRALIA HOLDCO PTE. LTD.",
+    "RegistrationAuthority": "BizInsights Singapore",
+    "RegistrationDate": "08-11-2019",
+    "StateOfIncorporation": "SINGAPORE",
+    "directorAndShareDetails": {
+      "directors": {
+        "Director": [
+          {
+            "address1": "88 ROBERTSON QUAY #10-06 ROBERTSON BLUE SINGAPORE 238247",
+            "directorNumber": "G0466916P",
+            "directorships": {
+              "Directorship": [
+                {
+                  "appointedDate": "19-11-2019",
+                  "companyName": "LOGOS AUSTRALIA HOLDCO PTE. LTD.",
+                  "companyNumber": "201937742Z",
+                  "companyStatus": "LIVE COMPANY",
+                  "function": "DIRECTOR"
+                }
+              ]
+            },
+            "name": "MARSH JOHN EDWARD",
+            "nationality": "AUSTRALIAN",
+            "title": "DIRECTOR"
+          },
+          {
+            "address1": "12D KHEAM HOCK ROAD  SINGAPORE 298861",
+            "directorNumber": "G3402270X",
+            "directorships": {
+              "Directorship": [
+                {
+                  "appointedDate": "08-11-2019",
+                  "companyName": "LOGOS AUSTRALIA HOLDCO PTE. LTD.",
+                  "companyNumber": "201937742Z",
+                  "companyStatus": "LIVE COMPANY",
+                  "function": "DIRECTOR"
+                }
+              ]
+            },
+            "name": "IILIFFE TRENT ALEXANDER",
+            "nationality": "AUSTRALIAN",
+            "title": "DIRECTOR"
+          },
+          {
+            "address1": "38 BEACH ROAD #29-11 SOUTH BEACH TOWER SINGAPORE 189767",
+            "directorNumber": "S7423122E",
+            "directorships": {
+              "Directorship": [
+                {
+                  "appointedDate": "29-11-2019",
+                  "companyName": "LOGOS AUSTRALIA HOLDCO PTE. LTD.",
+                  "companyNumber": "201937742Z",
+                  "companyStatus": "LIVE COMPANY",
+                  "function": "SECRETARY"
+                }
+              ]
+            },
+            "name": "LAI FOON KUEN",
+            "nationality": "SINGAPORE CITIZEN",
+            "title": "SECRETARY"
+          },
+          {
+            "address1": "38 BEACH ROAD #29-11 SOUTH BEACH TOWER SINGAPORE 189767",
+            "directorNumber": "S8384448E",
+            "directorships": {
+              "Directorship": [
+                {
+                  "appointedDate": "29-11-2019",
+                  "companyName": "LOGOS AUSTRALIA HOLDCO PTE. LTD.",
+                  "companyNumber": "201937742Z",
+                  "companyStatus": "LIVE COMPANY",
+                  "function": "SECRETARY"
+                }
+              ]
+            },
+            "name": "NG HUEI YEE",
+            "nationality": "MALAYSIAN",
+            "title": "SECRETARY"
+          }
+        ]
+      },
+      "shareHolders": {
+        "ShareholderDetails": [
+          {
+            "address": "38 BEACH ROAD #29-11 SOUTH BEACH TOWER SINGAPORE 189767",
+            "currency": "SINGAPORE, DOLLARS",
+            "id": "201722998K",
+            "name": "LOGOS HOLDCO PTE. LTD.",
+            "nationality": "SINGAPORE",
+            "shareClass": "LOCAL COMPANY",
+            "shareCount": 207062876,
+            "shareholderType": "ORDINARY SHARES"
+          }
+        ]
+      }
+    }
+  },
+  "checkId": "6c5b7bef-35ff-3721-b6ce-784a163a4abf",
+  "entityId": "2fae5059-2a3e-fb10-4136-de3de3572868",
+  "ibRetrievalLocation": "https://data.kyckr.com/839940409",
+  "ibTransactionId": "10721491",
+  "requestId": "01ESSCARGK4S872DCH2X49PKPH"
+}

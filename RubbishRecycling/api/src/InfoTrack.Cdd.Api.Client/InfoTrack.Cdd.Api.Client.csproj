@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>InfoTrack</Authors>
+    <Company>InfoTrack</Company>
+    <Description>Client application for Api</Description>
+    <Copyright>2020</Copyright>
+    <PackageProjectUrl>https://github.com/InfoTrackGlobal/InfoTrack.Cdd</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/InfoTrackGlobal/InfoTrack.Cdd</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>Platform</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IncludeSymbols>True</IncludeSymbols>
+    <Version>0.0.1</Version>
+    <NeutralLanguage>en</NeutralLanguage>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1591;1701;1702</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="3.1.3" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="NSwag.AspNetCore" Version="13.9.4" />
+    <PackageReference Include="NSwag.MSBuild" Version="13.9.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="InfoTrack.Common.Api.Client" Version="1.0.256" />
+  </ItemGroup>
+
+  <Target Name="NSwag" BeforeTargets="Build">
+    <Copy SourceFiles="@(ReferencePath)" DestinationFolder="$(OutDir)References" />
+    <!--<Exec Command="$(NSwagExe_Core31) run config.nswag" />-->
+    <Exec Command="$(NSwagExe_Core31) run config.nswag /variables:OutputPath=$(OutputPath)" />
+    <RemoveDir Directories="$(OutDir)References" />
+  </Target>
+
+    <!--<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+        <Exec Command="$(NSwagExe_Core31) run config.nswag /variables:OutputPath=$(OutputPath)" />
+    </Target>-->
+
+</Project>

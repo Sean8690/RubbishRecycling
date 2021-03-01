@@ -1,0 +1,87 @@
+﻿{
+  "Companies": {
+    "CompanyDTO": [
+      {
+        "Addresses": {
+          "Addresses": [
+            {
+              "CityTown": "Singen Hohentwiel",
+              "Line": {
+                "AddressLineDTO": [
+                  {
+                    "Line": "Singen Hohentwiel"
+                  }
+                ]
+              },
+              "Type": "Registered Office Short Description"
+            }
+          ]
+        },
+        "Aliases": {
+          "AddressLine": null
+        },
+        "Code": "3404705",
+        "CompanyID": "3404705",
+        "Date": "17/12/2020",
+        "Name": "3A Composites Germany GmbH",
+        "RegistrationAuthority": "District Court Freiburg",
+        "RegistrationAuthorityCode": "8"
+      },
+      {
+        "Addresses": {
+          "Addresses": [
+            {
+              "CityTown": "Singen Hohentwiel",
+              "Line": {
+                "AddressLineDTO": [
+                  {
+                    "Line": "Singen Hohentwiel"
+                  }
+                ]
+              },
+              "Type": "Registered Office Short Description"
+            }
+          ]
+        },
+        "Aliases": {
+          "AddressLine": null
+        },
+        "Code": "3395816",
+        "CompanyID": "3395816",
+        "Date": "17/12/2020",
+        "Name": "3A Composites Holding Germany GmbH",
+        "RegistrationAuthority": "District Court Freiburg",
+        "RegistrationAuthorityCode": "8"
+      },
+      {
+        "Addresses": {
+          "Addresses": [
+            {
+              "CityTown": "Osnabrück",
+              "Line": {
+                "AddressLineDTO": [
+                  {
+                    "Line": "Osnabrück"
+                  }
+                ]
+              },
+              "Type": "Registered Office Short Description"
+            }
+          ]
+        },
+        "Aliases": {
+          "AddressLine": null
+        },
+        "Code": "1682875",
+        "CompanyID": "1682875",
+        "Date": "17/12/2020",
+        "Name": "3A Composites GmbH",
+        "RegistrationAuthority": "District Court Osnabrück",
+        "RegistrationAuthorityCode": "439"
+      }
+    ]
+  },
+  "ibResponseCode": 100,
+  "ibTransactionId": "7996160",
+  "requestId": "01ESSBX0SCDCVN6T8JA8BHGVY5"
+}

@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <CodeAnalysisRuleSet>../../InfoTrack.Cdd.ruleset</CodeAnalysisRuleSet>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Common\Resolvers\**" />
+    <EmbeddedResource Remove="Common\Resolvers\**" />
+    <None Remove="Common\Resolvers\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="InfoTrack.Common.Application" Version="1.0.256" />
+    <PackageReference Include="InfoTrack.Platform.Core" Version="1.0.256" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>

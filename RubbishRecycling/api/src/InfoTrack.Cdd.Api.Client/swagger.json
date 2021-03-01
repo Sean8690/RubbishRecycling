@@ -1,0 +1,1168 @@
+{
+  "x-generator": "NSwag v13.9.4.0 (NJsonSchema v10.3.1.0 (Newtonsoft.Json v12.0.0.0))",
+  "openapi": "3.0.0",
+  "info": {
+    "title": "InfoTrack CDD API",
+    "description": "Customer Due Diligence (CDD) API",
+    "version": "v1.0.0.0"
+  },
+  "paths": {
+    "/PersonLookup/order": {
+      "post": {
+        "tags": [
+          "PersonLookup"
+        ],
+        "summary": "Order an AML report for a person",
+        "operationId": "PersonLookup_Post",
+        "requestBody": {
+          "x-name": "request",
+          "description": "Look Up Request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AmlPersonLookupRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "Returns details about the order created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonListResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "JWT Token": []
+          }
+        ]
+      }
+    },
+    "/PersonLookup/order/report": {
+      "post": {
+        "tags": [
+          "PersonLookup"
+        ],
+        "summary": "Order a report for selected person",
+        "operationId": "PersonLookup_GenerateReport",
+        "requestBody": {
+          "x-name": "reportRequest",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AmlPersonLookupReportRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "Returns details about the order created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "JWT Token": []
+          }
+        ]
+      }
+    },
+    "/Country": {
+      "get": {
+        "tags": [
+          "Country"
+        ],
+        "summary": "Get a list of supported countries",
+        "description": "Returns a full list of supported countries",
+        "operationId": "Country_GetSupportedCountries",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CountryDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JWT Token": []
+          }
+        ]
+      }
+    },
+    "/Health": {
+      "get": {
+        "tags": [
+          "Health"
+        ],
+        "summary": "Run a health check",
+        "operationId": "Health_Get",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JWT Token": []
+          }
+        ]
+      }
+    },
+    "/Order": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "Get a list of orders matching the given criteria",
+        "description": "This can be used for reorder detection",
+        "operationId": "Order_Get",
+        "parameters": [
+          {
+            "name": "serviceIdentifier",
+            "in": "query",
+            "required": true,
+            "description": "Service identifier (identifies which report should be ordered)",
+            "schema": {
+              "$ref": "#/components/schemas/ServiceIdentifier2"
+            },
+            "x-position": 1
+          },
+          {
+            "name": "providerEntityCode",
+            "in": "query",
+            "required": true,
+            "description": "Provider's unique organisation identifier (current provider is Frankie Financial)",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 2
+          },
+          {
+            "name": "kyckrCountryCode",
+            "in": "query",
+            "required": true,
+            "description": "Country of registration. Kyckr-format country code (ISO2, but with documented exceptions for USA, Canada and UAE)",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 3
+          },
+          {
+            "name": "clientReference",
+            "in": "query",
+            "required": true,
+            "description": "Client reference (aka \"matter\")",
+            "schema": {
+              "type": "string",
+              "maxLength": 50,
+              "nullable": true
+            },
+            "x-position": 4
+          },
+          {
+            "name": "retailerReference",
+            "in": "query",
+            "required": true,
+            "description": "Retailer reference",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 5
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OrderDto"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "JWT Token": []
+          }
+        ]
+      }
+    },
+    "/Organisation": {
+      "get": {
+        "tags": [
+          "Organisation"
+        ],
+        "summary": "Lookup an organisation by name and/or number",
+        "description": "Returns a list of organisations matching the lookup query.\n            \nName OR number is required (or both).",
+        "operationId": "Organisation_Get",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Organisation name",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
+          },
+          {
+            "name": "number",
+            "in": "query",
+            "description": "Organisation number, e.g. ABN or ACN",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 2
+          },
+          {
+            "name": "kyckrCountryCode",
+            "in": "query",
+            "required": true,
+            "description": "Country of registration. Kyckr-format country code (ISO2, but with documented exceptions for USA, Canada and UAE)",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 3
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OrganisationLiteDto"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "JWT Token": []
+          }
+        ]
+      }
+    },
+    "/Organisation/{providerEntityCode}/order": {
+      "post": {
+        "tags": [
+          "Organisation"
+        ],
+        "summary": "Order a report for an organisation",
+        "operationId": "Organisation_Post",
+        "parameters": [
+          {
+            "name": "providerEntityCode",
+            "in": "path",
+            "required": true,
+            "description": "Provider's unique organisation identifier (current provider is Frankie Financial)",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
+          },
+          {
+            "name": "kyckrCountryCode",
+            "in": "query",
+            "required": true,
+            "description": "Country of registration. Kyckr-format country code (ISO2, but with documented exceptions for USA, Canada and UAE)",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 2
+          },
+          {
+            "name": "serviceIdentifier",
+            "in": "query",
+            "required": true,
+            "description": "Service identifier (identifies which report should be ordered)",
+            "schema": {
+              "$ref": "#/components/schemas/ServiceIdentifier2"
+            },
+            "x-position": 3
+          },
+          {
+            "name": "clientReference",
+            "in": "query",
+            "required": true,
+            "description": "Client reference (aka \"matter\")",
+            "schema": {
+              "type": "string",
+              "maxLength": 50,
+              "nullable": true
+            },
+            "x-position": 4
+          },
+          {
+            "name": "retailerReference",
+            "in": "query",
+            "required": true,
+            "description": "Retailer reference",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 5
+          },
+          {
+            "name": "quoteId",
+            "in": "query",
+            "description": "Quote Id (optional)",
+            "schema": {
+              "type": "string",
+              "format": "guid",
+              "nullable": true
+            },
+            "x-position": 6
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns details about the order created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "JWT Token": []
+          }
+        ]
+      }
+    },
+    "/Quote": {
+      "get": {
+        "tags": [
+          "Quote"
+        ],
+        "summary": "Get a fee quote for a ServiceIdentifier and country",
+        "operationId": "Quote_Fee",
+        "parameters": [
+          {
+            "name": "serviceIdentifier",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ServiceIdentifier2"
+            },
+            "x-position": 1
+          },
+          {
+            "name": "kyckrCountryCode",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 2
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuoteDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "JWT Token": []
+          }
+        ]
+      }
+    },
+    "/System": {
+      "get": {
+        "tags": [
+          "System"
+        ],
+        "summary": "Get system and region info",
+        "description": "Returns information about the system and region. This can be used to confirm that deployments are configured correctly and are up to date.\n\nAdditional information is logged to Kibana, so check there if the info you need is not on the response.",
+        "operationId": "System_GetSystemInfo",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemInfoDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "JWT Token": []
+          }
+        ]
+      }
+    },
+    "/Version": {
+      "get": {
+        "tags": [
+          "Version"
+        ],
+        "operationId": "Version_GetApiVersion",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiInformationDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "JWT Token": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "PersonListResponseDto": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/OrderDto"
+          },
+          {
+            "type": "object",
+            "description": "Detailed person info",
+            "additionalProperties": false,
+            "properties": {
+              "matches": {
+                "type": "array",
+                "nullable": true,
+                "items": {
+                  "$ref": "#/components/schemas/PersonLite"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "PersonLite": {
+        "type": "object",
+        "description": "Basic person info.\n            \nMore info is available from the provider if required, but the structure of this object has been kept simple for now",
+        "additionalProperties": false,
+        "properties": {
+          "providerEntityCode": {
+            "type": "string",
+            "description": "Provider's unique entity identifier (current provider is Frankie Financial)",
+            "nullable": true
+          },
+          "fullName": {
+            "type": "string",
+            "nullable": true
+          },
+          "dob": {
+            "type": "string",
+            "description": "Date of Birth of the person to look for.",
+            "nullable": true
+          },
+          "yearOfBirth": {
+            "type": "string",
+            "description": "Date of Birth of the person to look for.",
+            "nullable": true
+          },
+          "countries": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "OrderDto": {
+        "type": "object",
+        "description": "Order info",
+        "additionalProperties": false,
+        "properties": {
+          "orderId": {
+            "type": "integer",
+            "description": "Order Id",
+            "format": "int32"
+          },
+          "parentOrderId": {
+            "type": "integer",
+            "description": "Parent order id (if any)",
+            "format": "int32",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Order description",
+            "nullable": true
+          },
+          "dateOrdered": {
+            "type": "string",
+            "description": "Date the order was placed",
+            "format": "date-time"
+          },
+          "dateCompleted": {
+            "type": "string",
+            "description": "Date the order was completed",
+            "format": "date-time",
+            "nullable": true
+          },
+          "status": {
+            "description": "Order status",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/SystemStatusEnum"
+              }
+            ]
+          },
+          "statusMessage": {
+            "type": "string",
+            "description": "Status message",
+            "nullable": true
+          },
+          "clientReference": {
+            "type": "string",
+            "description": "Client reference (aka \"matter\")",
+            "nullable": true
+          },
+          "retailerReference": {
+            "type": "string",
+            "description": "Retailer reference",
+            "nullable": true
+          }
+        }
+      },
+      "SystemStatusEnum": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Incomplete",
+          "Complete",
+          "Error",
+          "Refund"
+        ],
+        "enum": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "ProblemDetails": {
+        "type": "object",
+        "additionalProperties": {
+          "nullable": true
+        },
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          },
+          "extensions": {
+            "type": "object",
+            "nullable": true,
+            "additionalProperties": {}
+          }
+        }
+      },
+      "AmlPersonLookupRequest": {
+        "type": "object",
+        "description": "Request for AML Lookup",
+        "additionalProperties": false,
+        "required": [
+          "givenName",
+          "familyName"
+        ],
+        "properties": {
+          "givenName": {
+            "type": "string",
+            "description": "First name of person to lookup for.",
+            "minLength": 1
+          },
+          "middleName": {
+            "type": "string",
+            "description": "Middle name of person to lookup for.",
+            "nullable": true
+          },
+          "familyName": {
+            "type": "string",
+            "description": "Last name of person to lookup for.",
+            "minLength": 1
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "description": "Date of Birth of the person to look for.",
+            "nullable": true
+          },
+          "yearOfBirth": {
+            "type": "string",
+            "description": "Year of Birth of the person to look for.",
+            "nullable": true
+          },
+          "serviceIdentifier": {
+            "$ref": "#/components/schemas/ServiceIdentifier"
+          },
+          "clientReference": {
+            "type": "string",
+            "description": "Year of Birth of the person to look for.",
+            "nullable": true
+          },
+          "retailerReference": {
+            "type": "string",
+            "description": "Retailer reference for the client",
+            "nullable": true
+          },
+          "quoteId": {
+            "type": "string",
+            "description": "QuoteId",
+            "format": "guid",
+            "nullable": true
+          }
+        }
+      },
+      "ServiceIdentifier": {
+        "type": "integer",
+        "description": "Service identifier (identifies which report should be ordered)",
+        "x-enumNames": [
+          "Undefined",
+          "CddOrganisationReport",
+          "CddPersonRiskLookup",
+          "CddPersonRiskReport"
+        ],
+        "enum": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "AmlPersonLookupReportRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "orderId",
+          "providerEntityCodes"
+        ],
+        "properties": {
+          "orderId": {
+            "type": "integer",
+            "description": "Parent OrderId (the Id of the lookup order)",
+            "format": "int32"
+          },
+          "providerEntityCodes": {
+            "type": "array",
+            "description": "Provider's unique entity identifiers (current provider is Frankie Financial)",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "CountryDto": {
+        "type": "object",
+        "description": "A country or a state/region within a country",
+        "additionalProperties": false,
+        "properties": {
+          "countryName": {
+            "type": "string",
+            "description": "Country display name",
+            "nullable": true
+          },
+          "regionName": {
+            "type": "string",
+            "description": "Region display name (if applicable)",
+            "nullable": true
+          },
+          "kyckrCountryCode": {
+            "type": "string",
+            "description": "Kyckr-format country code (ISO2, but with documented exceptions for USA, Canada and UAE)",
+            "nullable": true
+          },
+          "iso2": {
+            "type": "string",
+            "description": "For grouping purposes only: ISO2-compliant country code. For non-grouping purposes, please use the KyckrCountryCode instead.",
+            "nullable": true
+          },
+          "continent": {
+            "type": "string",
+            "description": "Continent or greater region (e.g. Oceania, Asia, North America, Middle East)",
+            "nullable": true
+          },
+          "flagUri": {
+            "type": "string",
+            "description": "Country or region flag",
+            "format": "uri",
+            "nullable": true
+          }
+        }
+      },
+      "ServiceIdentifier2": {
+        "type": "string",
+        "description": "Service identifier (identifies which report should be ordered)",
+        "x-enumNames": [
+          "Undefined",
+          "CddOrganisationReport",
+          "CddPersonRiskLookup",
+          "CddPersonRiskReport"
+        ],
+        "enum": [
+          "Undefined",
+          "CddOrganisationReport",
+          "CddPersonRiskLookup",
+          "CddPersonRiskReport"
+        ]
+      },
+      "OrganisationLiteDto": {
+        "type": "object",
+        "description": "Basic organisation info.\n            \nMore info is available from the provider if required (e.g. aliases, addresses), but the structure of this object has been kept simple for now",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Organisation name",
+            "nullable": true
+          },
+          "number": {
+            "type": "string",
+            "description": "Organisation number, e.g. ABN or ACN",
+            "nullable": true
+          },
+          "kyckrCountryCode": {
+            "type": "string",
+            "description": "Country of registration. Kyckr-format country code (ISO2, but with documented exceptions for USA, Canada and UAE)",
+            "nullable": true
+          },
+          "providerEntityCode": {
+            "type": "string",
+            "description": "Provider's unique organisation identifier (current provider is Frankie Financial)",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "description": "Organisation registered address.\n            \nThere may actually be a list of addresses, and structured data is available if necessary. So the API contract for this property can be changed if required.",
+            "nullable": true
+          }
+        }
+      },
+      "QuoteDto": {
+        "type": "object",
+        "description": "Fee quote info",
+        "additionalProperties": false,
+        "properties": {
+          "fee": {
+            "type": "number",
+            "description": "Fee",
+            "format": "decimal"
+          },
+          "serviceIdentifier": {
+            "description": "Service identifier (identifies which report should be ordered)",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ServiceIdentifier"
+              }
+            ]
+          },
+          "kyckrCountryCode": {
+            "type": "string",
+            "description": "Country of registration. Kyckr-format country code (ISO2, but with documented exceptions for USA, Canada and UAE)",
+            "nullable": true
+          },
+          "quoteId": {
+            "type": "string",
+            "description": "QuoteId",
+            "format": "guid"
+          }
+        }
+      },
+      "SystemInfoDto": {
+        "type": "object",
+        "description": "System and region info",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Assembly name",
+            "nullable": true
+          },
+          "version": {
+            "type": "string",
+            "description": "Assembly version",
+            "nullable": true
+          },
+          "application": {
+            "type": "string",
+            "description": "Application name (from Serilog settings)",
+            "nullable": true
+          },
+          "environment": {
+            "type": "string",
+            "description": "Environment (from Serilog settings)",
+            "nullable": true
+          },
+          "region": {
+            "type": "string",
+            "description": "Region (from Serilog settings)",
+            "nullable": true
+          },
+          "timeZoneId": {
+            "type": "string",
+            "description": "Timezone ID",
+            "nullable": true
+          }
+        }
+      },
+      "ApiInformationDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "version": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "JWT Token": {
+        "type": "apiKey",
+        "description": "Copy this into the value field: Bearer {token}",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "JWT Token": []
+    }
+  ]
+}

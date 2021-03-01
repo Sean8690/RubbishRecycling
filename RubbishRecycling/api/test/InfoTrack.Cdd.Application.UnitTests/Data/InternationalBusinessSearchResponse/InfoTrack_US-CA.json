@@ -1,0 +1,73 @@
+﻿{
+  "Companies": {
+    "CompanyDTO": [
+      {
+        "Addresses": {
+          "Addresses": [
+            {
+              "AddressInOneLine": "CALIFORNIA",
+              "AddressLine1": "CALIFORNIA"
+            }
+          ]
+        },
+        "Aliases": {
+          "AddressLine": null
+        },
+        "Code": "C2968557_SU5GT1RSQUNLIFBSTyBDT1VOU0VMLCBJTkMu_NmM1M2RjMWYtZmQ1YS00Y2Q2LWE3OWQtMjE1YjVkMGM1OGQ1_RU5USVRZX0lEOkMyOTY4NTU3O0VOVElUWV9OQU1FOklORk9UUkFDSyBQUk8gQ09VTlNFTCwgSU5DLjtFTlRJVFlfQUREUkVTUzpDQUxJRk9STklBO01FU1NBR0U6MyBlbnRpdHkgcmVjb3JkcyAob3V0IG9mIDMgcmVjb3JkcyBmb3VuZCku",
+        "CompanyID": "C2968557",
+        "Name": "INFOTRACK PRO COUNSEL, INC."
+      },
+      {
+        "Addresses": {
+          "Addresses": [
+            {
+              "AddressInOneLine": "CALIFORNIA",
+              "AddressLine1": "CALIFORNIA"
+            }
+          ]
+        },
+        "Aliases": {
+          "AddressLine": null
+        },
+        "Code": "C3515760_SU5GT1RSQUNLIElOQy4=_NmM1M2RjMWYtZmQ1YS00Y2Q2LWE3OWQtMjE1YjVkMGM1OGQ1_RU5USVRZX0lEOkMzNTE1NzYwO0VOVElUWV9OQU1FOklORk9UUkFDSyBJTkMuO0VOVElUWV9BRERSRVNTOkNBTElGT1JOSUE7TUVTU0FHRTo=",
+        "CompanyID": "C3515760",
+        "Name": "INFOTRACK INC."
+      },
+      {
+        "Addresses": {
+          "Addresses": [
+            {
+              "AddressInOneLine": "CALIFORNIA",
+              "AddressLine1": "CALIFORNIA"
+            }
+          ]
+        },
+        "Aliases": {
+          "AddressLine": null
+        },
+        "Code": "C3713962_SU5GT1RSQUNLIElULCBJTkMu_NmM1M2RjMWYtZmQ1YS00Y2Q2LWE3OWQtMjE1YjVkMGM1OGQ1_RU5USVRZX0lEOkMzNzEzOTYyO0VOVElUWV9OQU1FOklORk9UUkFDSyBJVCwgSU5DLjtFTlRJVFlfQUREUkVTUzpDQUxJRk9STklBO01FU1NBR0U6",
+        "CompanyID": "C3713962",
+        "Name": "INFOTRACK IT, INC."
+      },
+      {
+        "Addresses": {
+          "Addresses": [
+            {
+              "AddressInOneLine": "NEW JERSEY",
+              "AddressLine1": "NEW JERSEY"
+            }
+          ]
+        },
+        "Aliases": {
+          "AddressLine": null
+        },
+        "Code": "202023810938_SU5GT1RSQUNLIFVTQSwgTExD_NmM1M2RjMWYtZmQ1YS00Y2Q2LWE3OWQtMjE1YjVkMGM1OGQ1_RU5USVRZX0lEOjIwMjAyMzgxMDkzODtFTlRJVFlfTkFNRTpJTkZPVFJBQ0sgVVNBLCBMTEM7RU5USVRZX0FERFJFU1M6TkVXIEpFUlNFWTtNRVNTQUdFOjEgZW50aXR5IHJlY29yZCAob3V0IG9mIDEgcmVjb3JkIGZvdW5kKS4=",
+        "CompanyID": "202023810938",
+        "Name": "INFOTRACK USA, LLC"
+      }
+    ]
+  },
+  "ibResponseCode": 100,
+  "ibTransactionId": "7996071",
+  "requestId": "01ESS4S81HVABB56ZNE58630QC"
+}

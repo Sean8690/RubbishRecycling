@@ -1,0 +1,8 @@
+{
+  "baseBranch": "master",
+  "plugins": [
+    "git-tag",
+    "released"
+  ],
+  "author": "TeamCity <teamcity-infotrack@infotrack.com.au>"
+}

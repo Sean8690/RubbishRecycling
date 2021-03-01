@@ -1,0 +1,10 @@
+  {
+    "*.{ts,tsx}": [
+      "git add"
+    ],
+    "*.{ts,tsx,js,json}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*": "jest --bail --findRelatedTests"
+  }

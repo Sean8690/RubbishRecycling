@@ -1,0 +1,64 @@
+﻿{
+  "CompanyProfile": {
+    "Activity": {
+      "ActivityDTO": [
+        {}
+      ]
+    },
+    "ActivityDeclaration": {
+      "ActivityDeclarationDTO": [
+        {}
+      ]
+    },
+    "Addresses": {
+      "Addresses": [
+        {
+          "AddressLine1": "6 route de Trêves",
+          "CityTown": "Senningerberg",
+          "Country": "Luxembourg",
+          "Line": {
+            "AddressLineDTO": [
+              {
+                "Line": "6 route de Trêves"
+              },
+              {
+                "Line": "2633"
+              },
+              {
+                "Line": "Senningerberg"
+              }
+            ]
+          },
+          "Postcode": "2633",
+          "Type": "Address of the local main office"
+        }
+      ]
+    },
+    "Aliases": {
+      "AddressLine": null
+    },
+    "Capital": {
+      "CapitalDTO": [
+        {
+          "Ammount": "12500",
+          "Currency": "Euro",
+          "Type": "Fixed capital"
+        }
+      ]
+    },
+    "Code": "B183521",
+    "Date": "17/12/2020",
+    "FoundationDate": "2013-12-30",
+    "LegalForm": "Société à responsabilité limitée",
+    "Name": "HARIBO Luxemburg",
+    "RegistrationAuthority": "Registre de Commerce et des sociétés",
+    "RegistrationAuthorityCode": "LURCS",
+    "RegistrationDate": "2014-01-20",
+    "RegistrationNumber": "B183521"
+  },
+  "checkId": "e83af080-e182-1d85-dd5e-686b3a724a26",
+  "entityId": "fc063792-05e6-1e39-6d4a-b45cfdfeb3e1",
+  "ibRetrievalLocation": "https://data.kyckr.com/1974847359",
+  "ibTransactionId": "10721489",
+  "requestId": "01ESSC5XS9VZC8ZFVHQ0JDK1B6"
+}

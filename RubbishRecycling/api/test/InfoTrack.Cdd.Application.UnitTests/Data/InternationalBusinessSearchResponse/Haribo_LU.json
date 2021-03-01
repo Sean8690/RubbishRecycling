@@ -1,0 +1,20 @@
+﻿{
+    "Companies": {
+        "CompanyDTO": [
+            {
+                "Aliases": {
+                    "AddressLine": null
+                },
+                "Code": "B183521",
+                "CompanyID": "B183521",
+                "Date": "17/12/2020",
+                "Name": "HARIBO Luxemburg",
+                "RegistrationAuthority": "Registre de Commerce et des sociétés",
+                "RegistrationAuthorityCode": "LURCS"
+            }
+        ]
+    },
+    "ibResponseCode": 100,
+    "ibTransactionId": "7996163",
+    "requestId": "01ESSC3HTMZX5FE3165DEA22WZ"
+}

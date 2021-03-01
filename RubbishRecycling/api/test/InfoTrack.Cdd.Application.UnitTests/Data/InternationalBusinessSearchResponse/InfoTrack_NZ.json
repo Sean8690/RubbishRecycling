@@ -1,0 +1,25 @@
+﻿{
+    "Companies": {
+        "CompanyDTO": [
+            {
+                "Code": "9429042355083",
+                "CompanyID": "5999552",
+                "LegalForm": "NZ Limited Company",
+                "LegalStatus": "Registered",
+                "Name": "INFOTRACK LIMITED",
+                "RegistrationAuthority": "NZBN"
+            },
+            {
+                "Code": "9429035770596",
+                "CompanyID": "1397023",
+                "LegalForm": "NZ Limited Company",
+                "LegalStatus": "Registered",
+                "Name": "INFO & TRACK LIMITED",
+                "RegistrationAuthority": "NZBN"
+            }
+        ]
+    },
+    "ibResponseCode": 100,
+    "ibTransactionId": "7996067",
+    "requestId": "01ESS4PRM6Q346AYZ3VHSW1F8G"
+}
