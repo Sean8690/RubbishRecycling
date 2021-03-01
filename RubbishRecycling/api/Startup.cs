@@ -1,5 +1,6 @@
 ﻿
 using System.Reflection;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using RubbishRecyclingAU.ControllerModels.Authentication;
 using RubbishRecyclingAU.Services;
 
 #pragma warning disable 1591
@@ -46,6 +48,15 @@ namespace RubbishRecyclingAU
                 services.AddDbContext<RubbishRecyclingContext>(options => options.UseMySql(writerConnStr));
             }
 
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                    .AddCookie(options =>
+                    {
+                        options.ExpireTimeSpan = AuthenticationConstants.AuthenticationCookieLifetime;
+                        options.SlidingExpiration = true;
+                        options.Cookie.Name = AuthenticationConstants.AuthenticationCookieName;
+                        // We don't set MaxAge of the cookie because we want it to be a session cookie.
+                    });
+
             services.AddHealthChecks();
             services
                     .AddSingleton(s => new HealthCheckOptions
@@ -57,6 +68,8 @@ namespace RubbishRecyclingAU
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<RubbishRecyclingContext>();
             services.AddScoped<IRegisterService, RegisterService>();
+            services.AddScoped<IAuthenticationWrapper, AuthenticationWrapper>();
+            services.AddScoped<IAntiforgeryService, AntiforgeryService>();
 
             // Register the Swagger services
             services.AddSwaggerDocument();
