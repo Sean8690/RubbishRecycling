@@ -1,5 +1,6 @@
 ﻿
 using System.Reflection;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -10,6 +11,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using RubbishRecyclingAU.ControllerModels.Authentication;
 using RubbishRecyclingAU.Services;
 
@@ -34,7 +37,16 @@ namespace RubbishRecyclingAU
             services.AddSingleton(Configuration);
             services.AddSingleton<ILoggerFactory, LoggerFactory>();
 
-            services.AddControllers().AddNewtonsoftJson();
+            services.AddControllers(options =>
+                {
+                    options.Filters.Add<AuthenticationWrapperFilter>();
+                    options.Filters.Add<RequestAccessorFilter>();
+                })
+                .AddNewtonsoftJson(options =>
+                {
+                    options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;  //to prevent reference loops from happening
+                });
 
             var writerConnStr = Configuration.GetConnectionString("RubbishRecyclingDb");
             if (!string.IsNullOrEmpty(writerConnStr))
@@ -71,6 +83,7 @@ namespace RubbishRecyclingAU
             services.AddScoped<IItemService, ItemService>();
             services.AddScoped<IAuthenticationWrapper, AuthenticationWrapper>();
             services.AddScoped<IAntiforgeryService, AntiforgeryService>();
+            services.AddScoped<IRequestAccessor, RequestAccessor>();
 
             // Register the Swagger services
             services.AddSwaggerDocument();

@@ -56,7 +56,6 @@ namespace RubbishRecyclingAU.Services
                 {
                     CanProceed = true,
                     Message = "Sucess"
-
                 };
             }
 
