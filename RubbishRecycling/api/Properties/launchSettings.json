@@ -14,90 +14,9 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "applicationUrl": "http://localhost:5000",
-        "environmentVariables": {
-            "ASPNETCORE_ENVIRONMENT": "Dev"
-        }
-    },
-    "AU Test": {
-      "commandName": "Project",
-      "launchBrowser": true,
-      "launchUrl": "swagger",
-      "applicationUrl": "http://localhost:5000",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Test"
+        "ASPNETCORE_ENVIRONMENT": "Dev"
       }
-    },
-    "AU Stage": {
-      "commandName": "Project",
-      "launchBrowser": true,
-      "launchUrl": "swagger",
-      "applicationUrl": "http://localhost:5000",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Stage"
-      }
-    },
-    "AU Prod": {
-      "commandName": "Project",
-      "launchBrowser": true,
-      "launchUrl": "swagger",
-      "applicationUrl": "http://localhost:5000",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Production"
-      }
-    },
-    "UK Test": {
-      "commandName": "Project",
-      "launchBrowser": true,
-      "launchUrl": "swagger",
-      "applicationUrl": "http://localhost:5000",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Test-UK"
-      }
-    },
-    "UK Stage": {
-      "commandName": "Project",
-      "launchBrowser": true,
-      "launchUrl": "swagger",
-      "applicationUrl": "http://localhost:5000",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Stage-UK"
-      }
-    },
-    "UK Prod": {
-      "commandName": "Project",
-      "launchBrowser": true,
-      "launchUrl": "swagger",
-      "applicationUrl": "http://localhost:5000",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Production-UK"
-      }
-    },
-    "US Test": {
-      "commandName": "Project",
-      "launchBrowser": true,
-      "launchUrl": "swagger",
-      "applicationUrl": "http://localhost:5000",
-      "environmentVariables": {
-          "ASPNETCORE_ENVIRONMENT": "Test-US"
-      }
-    },
-    "US Stage": {
-        "commandName": "Project",
-        "launchBrowser": true,
-        "launchUrl": "swagger",
-        "applicationUrl": "http://localhost:5000",
-        "environmentVariables": {
-            "ASPNETCORE_ENVIRONMENT": "Stage-US"
-        }
-    },
-    "US Prod": {
-        "commandName": "Project",
-        "launchBrowser": true,
-        "launchUrl": "swagger",
-        "applicationUrl": "http://localhost:5000",
-        "environmentVariables": {
-            "ASPNETCORE_ENVIRONMENT": "Production-US"
-        }
     }
   }
 }

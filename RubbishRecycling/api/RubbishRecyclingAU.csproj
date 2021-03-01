@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <CodeAnalysisRuleSet>../../InfoTrack.Cdd.ruleset</CodeAnalysisRuleSet>
+    <!--<CodeAnalysisRuleSet>../../InfoTrack.Cdd.ruleset</CodeAnalysisRuleSet>-->
     <UserSecretsId>1b453de1-9847-4839-b9a8-7d2c26493ede</UserSecretsId>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PreserveCompilationReferences>true</PreserveCompilationReferences>
@@ -11,6 +11,17 @@
     <RootNamespace>RubbishRecyclingAU</RootNamespace>
     <StartupObject>RubbishRecyclingAU.Program</StartupObject>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Examples\**" />
+    <Compile Remove="Middleware\**" />
+    <Content Remove="Examples\**" />
+    <Content Remove="Middleware\**" />
+    <EmbeddedResource Remove="Examples\**" />
+    <EmbeddedResource Remove="Middleware\**" />
+    <None Remove="Examples\**" />
+    <None Remove="Middleware\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="InfoTrack.Common.Api" Version="1.0.256" />
@@ -24,7 +35,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
-    <PackageReference Include="NSwag.Generation.AspNetCore" Version="13.9.4" />
+    <PackageReference Include="NSwag.AspNetCore" Version="13.10.7" />
+    <PackageReference Include="NSwag.Generation.AspNetCore" Version="13.10.7" />
     <PackageReference Include="NSwag.MSBuild" Version="13.9.4">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -33,14 +45,5 @@
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="5.6.3" />
     <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="6.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="5.6.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Examples\" />
-    <Folder Include="Middleware\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="..\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
 </Project>

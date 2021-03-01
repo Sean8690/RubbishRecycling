@@ -57,6 +57,11 @@ namespace RubbishRecyclingAU
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<RubbishRecyclingContext>();
 
+            // Register the Swagger services
+            services.AddSwaggerDocument();
+
+            services.AddSwaggerGen();
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -75,8 +80,8 @@ namespace RubbishRecyclingAU
             */
 
             app.UsePathBase("/api");
-            app.UseRouting(); // required to support /service/cdd/api/{route} routing
-            app.UseEndpoints(endpoints => // required to support /service/cdd/api/{route} routing
+            app.UseRouting(); // required to support /api/{route} routing
+            app.UseEndpoints(endpoints => // required to support /api/{route} routing
             {
                 endpoints.MapControllers();
                 endpoints.MapHealthChecks("/health");
@@ -91,13 +96,14 @@ namespace RubbishRecyclingAU
                 //app.UseHttpsRedirection();
             }
 
+
             ConfigureOpenApi(app);
         }
 
         private static string SwaggerTitle = "InfoTrack CDD API";
         private static string SwaggerVersion => $"v{Assembly.GetExecutingAssembly().GetName().Version}";
         private static string SwaggerDescription = "Customer Due Diligence (CDD) API";
-        private static string SwaggerDocumentName = $"InfoTrack.RubbishRecyclingAU.Api.{SwaggerVersion}";
+        private static string SwaggerDocumentName = $"RubbishRecyclingAU.Api.{SwaggerVersion}";
 
         private static void ConfigureOpenApiServices(IServiceCollection services)
         {
@@ -125,10 +131,12 @@ namespace RubbishRecyclingAU
         private static void ConfigureOpenApi(IApplicationBuilder app)
         {
             app.UseOpenApi();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint($"/api/swagger/{SwaggerDocumentName}/swagger.json", SwaggerDocumentName);
-            });
+            app.UseSwaggerUi3();
+
+            //app.UseSwaggerUI(c =>
+            //{
+            //    c.SwaggerEndpoint($"/api/swagger/{SwaggerDocumentName}/swagger.json", SwaggerDocumentName);
+            //});
         }
     }
 }

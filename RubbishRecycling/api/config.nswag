@@ -3,7 +3,7 @@
   "defaultVariables": "OutputPath=bin/Debug/netcoreapp3.1/",
   "documentGenerator": {
     "aspNetCoreToOpenApi": {
-      "project": "../RubbishRecyclingAU/RubbishRecyclingAU.csproj",
+      "project": "../RubbishRecyclingAU.csproj",
       "msBuildProjectExtensionsPath": null,
       "configuration": "",
       "runtime": null,
@@ -27,7 +27,7 @@
       "ignoreObsoleteProperties": false,
       "allowReferencesWithProperties": false,
       "serviceHost": null,
-      "serviceBasePath": "/pi",
+      "serviceBasePath": "/api",
       "serviceSchemes": [],
       "infoTitle": "InfoTrack RubbishRecyclingAU",
       "infoDescription": "RubbishRecyclingAU API",
