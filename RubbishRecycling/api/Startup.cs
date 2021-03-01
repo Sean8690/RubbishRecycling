@@ -1,16 +1,14 @@
-﻿using System.Linq;
+﻿
 using System.Reflection;
-using InfoTrack.Common.Api;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using NSwag;
-using NSwag.Generation.Processors.Security;
 using Swashbuckle.AspNetCore.Filters;
 
 #pragma warning disable 1591
@@ -34,18 +32,31 @@ namespace RubbishRecyclingAU
             services.AddSingleton(Configuration);
             services.AddSingleton<ILoggerFactory, LoggerFactory>();
 
+            services.AddControllers();
+
             var writerConnStr = Configuration.GetConnectionString("RubbishRecyclingDb");
             if (!string.IsNullOrEmpty(writerConnStr))
             {
                 // The connection string will be null when migration are being applied. See
                 // MigrationContextFactory.
-                services.AddSingleton(new DbContextOptionsBuilder<RubbishRecyclingContext>()
-                    .UseMySql(writerConnStr)
-                    .Options);
+                //services.AddSingleton(new DbContextOptionsBuilder<RubbishRecyclingContext>()
+                //    .UseMySql(writerConnStr)
+                //    .Options);
+
+                services.AddDbContext<RubbishRecyclingContext>(options => options.UseMySql(writerConnStr));
             }
 
+            services.AddHealthChecks();
+            services
+                    .AddSingleton(s => new HealthCheckOptions
+                    {
+                        Predicate = _ => true, // allow all health checks
+                        AllowCachingResponses = false,
+                    });
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<RubbishRecyclingContext>();
-            services.AddControllers();
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -68,6 +79,7 @@ namespace RubbishRecyclingAU
             app.UseEndpoints(endpoints => // required to support /service/cdd/api/{route} routing
             {
                 endpoints.MapControllers();
+                endpoints.MapHealthChecks("/health");
             });
 
             if (env.IsDevelopment())
@@ -85,7 +97,7 @@ namespace RubbishRecyclingAU
         private static string SwaggerTitle = "InfoTrack CDD API";
         private static string SwaggerVersion => $"v{Assembly.GetExecutingAssembly().GetName().Version}";
         private static string SwaggerDescription = "Customer Due Diligence (CDD) API";
-        private static string SwaggerDocumentName = "InfoTrack.RubbishRecyclingAU.Api.v1.0.0.0";
+        private static string SwaggerDocumentName = $"InfoTrack.RubbishRecyclingAU.Api.{SwaggerVersion}";
 
         private static void ConfigureOpenApiServices(IServiceCollection services)
         {
@@ -100,23 +112,14 @@ namespace RubbishRecyclingAU
                 configure.Description = SwaggerDescription;
                 configure.Version = SwaggerVersion;
                 configure.DocumentName = SwaggerDocumentName;
-                configure.OperationProcessors.Add(new OperationSecurityScopeProcessor("JWT Token"));
-                configure.AddSecurity(
-                    "JWT Token",
-                    Enumerable.Empty<string>(),
-                    new NSwag.OpenApiSecurityScheme
-                    {
-                        Type = OpenApiSecuritySchemeType.ApiKey,
-                        Name = "Authorization",
-                        In = OpenApiSecurityApiKeyLocation.Header,
-                        Description = "Copy this into the value field: Bearer {token}",
-                    });
             });
 
             // The default System.Text.Json.Serialization cannot serialize Enums to strings and causes doc generation to fail.
             services.AddSwaggerGenNewtonsoftSupport();
             services.AddSwaggerExamples();
             services.AddControllers().AddNewtonsoftJson();
+
+            ConfigureOpenApiServices(services);
         }
 
         private static void ConfigureOpenApi(IApplicationBuilder app)
@@ -124,7 +127,7 @@ namespace RubbishRecyclingAU
             app.UseOpenApi();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint($"/api/swagger/InfoTrack.RubbishRecyclingAU.Api.v1.0.0.0/swagger.json", "InfoTrack.RubbishRecyclingAU.Api.v1.0.0.0");
+                c.SwaggerEndpoint($"/api/swagger/{SwaggerDocumentName}/swagger.json", SwaggerDocumentName);
             });
         }
     }
