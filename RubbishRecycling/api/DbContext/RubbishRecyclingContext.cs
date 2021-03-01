@@ -22,15 +22,15 @@ namespace RubbishRecyclingAU
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<User>()
-            .HasOne(u => u.Address)
-            .WithOne(u => u.User)
-            .HasForeignKey<Address>(u => u.UserId);
+            modelBuilder.Entity<Address>()
+            .HasOne(u => u.User)
+            .WithOne(u => u.Address)
+            .HasForeignKey<User>(u => u.AddressId);
 
-            modelBuilder.Entity<Product>()
-            .HasOne(u => u.Address)
-            .WithOne(u => u.Product)
-            .HasForeignKey<Address>(u => u.ProductId);
+            modelBuilder.Entity<Address>()
+            .HasOne(u => u.Product)
+            .WithOne(u => u.Address)
+            .HasForeignKey<Product>(u => u.AddressId);
 
             modelBuilder.Entity<Product>()
             .HasOne(u => u.User)

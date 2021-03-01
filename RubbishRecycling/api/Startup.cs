@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using RubbishRecyclingAU.Services;
 
 #pragma warning disable 1591
 
@@ -55,6 +56,7 @@ namespace RubbishRecyclingAU
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<RubbishRecyclingContext>();
+            services.AddScoped<IRegisterService, RegisterService>();
 
             // Register the Swagger services
             services.AddSwaggerDocument();
