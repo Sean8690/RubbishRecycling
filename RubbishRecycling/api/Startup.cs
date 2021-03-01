@@ -68,6 +68,7 @@ namespace RubbishRecyclingAU
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<RubbishRecyclingContext>();
             services.AddScoped<IRegisterService, RegisterService>();
+            services.AddScoped<IItemService, ItemService>();
             services.AddScoped<IAuthenticationWrapper, AuthenticationWrapper>();
             services.AddScoped<IAntiforgeryService, AntiforgeryService>();
 

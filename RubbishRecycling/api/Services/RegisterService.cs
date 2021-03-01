@@ -51,23 +51,20 @@ namespace RubbishRecyclingAU.Services
                         Message = "Failed to create user"
                     };
                 }
-                else
-                {
-                    return new ServiceActionResult
-                    {
-                        CanProceed = true,
-                        Message = "Sucess"
-                    };
-                }
-            }
-            else
-            {
+
                 return new ServiceActionResult
                 {
-                    CanProceed = false,
-                    Message = "User Already Exists"
+                    CanProceed = true,
+                    Message = "Sucess"
+
                 };
             }
+
+            return new ServiceActionResult
+            {
+                CanProceed = false,
+                Message = "User Already Exists"
+            };
         }
     }
 }
