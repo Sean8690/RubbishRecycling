@@ -1,24 +1,24 @@
 {
   "compilerOptions": {
-    "strict": true,
-    "esModuleInterop": true,
-    "noImplicitAny": true,
-    "outDir": "./dist/",
     "sourceMap": true,
-    "module": "commonjs",
     "target": "es5",
     "jsx": "react",
-    "noUnusedLocals": true,
-    "noImplicitReturns": true,
-    "noUnusedParameters": true,
+    "module": "es6",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "lib": ["esnext", "dom", "es2015.core"],
-    "baseUrl": "./",
-    "forceConsistentCasingInFileNames": true,
+    "declaration": false,
+    "noImplicitAny": false,
+    "noImplicitReturns": false,
+    "noUnusedLocals": false,
+    "removeComments": true,
+    "strictNullChecks": false,
+    "outDir": "build",
+    "lib": ["es6", "es7", "dom"],
+    "baseUrl": "src",
     "paths": {
-      "~/*": ["./*"]
-    },
-    "pretty": true
+      "app/*": ["./app/*"]
+    }
   },
-  "exclude": ["node_modules", "dist"]
+  "exclude": ["dist", "build", "node_modules"]
 }

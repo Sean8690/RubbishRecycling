@@ -1,0 +1,56 @@
+.categoryList button {
+    margin-top: 1rem;
+}
+
+.itemList {
+    width: 90%;
+}
+
+.mainContent {
+    margin-left: 3.0rem;
+    margin-top: 4rem;
+}
+
+.cardContent {
+    height: 6rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.cardContent img {
+    height: 6rem;
+}
+
+.ant-card-body {
+    padding: 0;
+}
+
+.cardRightSection {
+    padding-left: 0.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.voteBtn {
+    display: flex;
+    flex-direction: column;
+}
+
+.voteBtn button{
+    width: 2.6rem;
+    text-align: center;
+    margin: 0.1rem;
+}
+
+.voteBtn .ww {
+    font-size: 0.6rem;
+    color: #a9a9a9;
+    text-align: center;
+    margin-top: 0.1rem;
+    margin-bottom: 0.3rem;
+}
+
+.gm {
+    width: 100%;
+}
