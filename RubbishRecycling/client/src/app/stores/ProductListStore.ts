@@ -58,13 +58,16 @@ export class Products {
     await delay(2000);
 
     console.log({
-      Category: this.CateList.filter((c) => c.isSelected).map((c) => c.id),
+      start: this.productList.length,
+      length: 10,
+      Category: this.CateList.map((c) => c.id),
       KeyWord: this.searchQuery,
     });
 
     const response = await axios({
       method: 'get',
       // /products
+      // datat {}
       url: 'https://jsonplaceholder.typicode.com/users',
       data: {
         start: this.productList.length,
@@ -90,6 +93,8 @@ export class Products {
     console.log({
       Category: this.CateList.filter((c) => c.isSelected).map((c) => c.id),
       KeyWord: this.searchQuery,
+      start: 0,
+      length: 10,
     });
 
     const response = await axios({
@@ -97,15 +102,16 @@ export class Products {
       // /products
       url: 'https://jsonplaceholder.typicode.com/users',
       data: {
-        Category: this.CateList.map((c) => c.id),
+        Category: this.CateList.filter((c) => c.isSelected).map((c) => c.id),
         KeyWord: this.searchQuery,
         start: 0,
         length: 10,
       },
     });
 
+    this.productList.length = 0;
+
     response.data.forEach((element) => {
-      this.productList.length = 0;
       let product = new Product();
       product.name = element.name;
       // product.location = element.address.stringify();

@@ -24,6 +24,7 @@ import {
 } from 'antd';
 import TextArea from "antd/lib/input/TextArea";
 import { PicturesWall } from "./PicturesWall";
+import PullToRefresh from "react-simple-pull-to-refresh";
 
 const { Search } = Input;
 
@@ -195,34 +196,35 @@ const Content = observer((props: { store: Products }) => {
     });
 
     const productList = products.appState === AppState.ViewMine ? products.myList : products.productList;
-
     switch (props.store.appState) {
         case AppState.ProductList:
         case AppState.ViewMine:
-            return <List ref={infiniteRef}>
-                {productList.map((i, item) => (
-                    <ListItem key={item}>
-                        <Card onClick={() => products.selectProduct(i.id)} style={{ "width": "100%", marginTop: 10 }}>
-                            <div className="cardContent">
-                                <div>
-                                    <img src={`https://loremflickr.com/240/240/product?random=${item}`} />
-                                </div>
-                                <div className="cardRightSection">
-                                    <h3>{i.name}</h3>
-                                    <p>This is the description</p>
-                                </div>
-                                <div className="voteBtn">
-                                    <span className="ww">{i.postTimeFromNow}/{i.distance}</span>
+           return <PullToRefresh isPullable={products.appState !== AppState.ViewMine} onRefresh={() => props.store.updateList() }>
+                <List ref={infiniteRef}>
+                    {productList.map((i, item) => (
+                        <ListItem key={item}>
+                            <Card onClick={() => products.selectProduct(i.id)} style={{ "width": "100%", marginTop: 10 }}>
+                                <div className="cardContent">
+                                    <div>
+                                        <img src={products.appState === AppState.ViewMine ? `https://loremflickr.com/240/240/product?random=${item}`: `https://loremflickr.com/240/240/product?random=${item+100}`} />
+                                    </div>
+                                    <div className="cardRightSection">
+                                        <h3>{i.name}</h3>
+                                        <p>This is the description</p>
+                                    </div>
+                                    <div className="voteBtn">
+                                        <span className="ww">{i.postTimeFromNow}/{i.distance}</span>
 
-                                    <Button onClick={(e) => { e.stopPropagation(); i.updateVote(VoteStatus.UpVote) }} type={i.voteStatus === VoteStatus.UpVote ? "primary" : "default"} size="small" >+ {i.upVote}</Button>
-                                    <Button onClick={(e) => { e.stopPropagation(); i.updateVote(VoteStatus.DownVote) }} type={i.voteStatus === VoteStatus.DownVote ? "primary" : "default"} size="small" >- {i.downVote}</Button>
+                                        <Button onClick={(e) => { e.stopPropagation(); i.updateVote(VoteStatus.UpVote) }} type={i.voteStatus === VoteStatus.UpVote ? "primary" : "default"} size="small" >+ {i.upVote}</Button>
+                                        <Button onClick={(e) => { e.stopPropagation(); i.updateVote(VoteStatus.DownVote) }} type={i.voteStatus === VoteStatus.DownVote ? "primary" : "default"} size="small" >- {i.downVote}</Button>
+                                    </div>
                                 </div>
-                            </div>
-                        </Card>
-                    </ListItem>
-                ))}
-                {products.isLoading && <Spin indicator={antIcon} />}
-            </List>;
+                            </Card>
+                        </ListItem>
+                    ))}
+                    {products.isLoading && <Spin indicator={antIcon} />}
+                </List>
+            </PullToRefresh>;
         case AppState.AddProduct:
             return <NewItemForm />;
         case AppState.ProductDetail:
