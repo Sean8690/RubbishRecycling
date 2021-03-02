@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using RubbishRecyclingAU.ControllerModels;
 using System.Threading.Tasks;
@@ -30,7 +31,7 @@ namespace RubbishRecyclingAU.Services
                 {
                     Description = itemDetails?.Description,
                     Name = itemDetails?.Name,
-                    ImageUrl = itemDetails?.ImageUrl,
+                    ImageUrl = new List<string> { itemDetails?.ImageUrl },
                     Address = new Address
                     {
                         StreetOrUnitNumber = itemDetails.Address?.StreetOrUnitNumber,

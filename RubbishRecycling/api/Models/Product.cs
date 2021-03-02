@@ -13,11 +13,14 @@ namespace RubbishRecyclingAU.Models
 
         public string Description { get; set; }
 
-        public string ImageUrl { get; set; }
+        public List<string> ImageUrl { get; set; }
+
+        public int Reusability { get; set; }
 
         public bool isExchanged { get; set; }
 
         public int AddressId { get; set; }
+
         public int UserId { get; set; }
 
         virtual public User User { get; set; }
