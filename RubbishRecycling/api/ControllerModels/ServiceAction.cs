@@ -9,6 +9,5 @@ namespace RubbishRecyclingAU.ControllerModels
     {
         public bool CanProceed { get; set; }
         public string Message { get; set; }
-        public int StatusCodes { get; set; }
     }
 }
