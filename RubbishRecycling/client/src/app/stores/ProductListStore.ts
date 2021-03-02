@@ -41,19 +41,71 @@ export class Products {
   CateList: Category[] = CateStrList.map((i, c) => new Category(c, i));
   tempCate = [];
 
+  searchQuery: string = '';
+
   constructor(rootStore: RootStore) {
     makeAutoObservable(this);
     this.rootStore = rootStore;
   }
 
+  updateSearchQuery = (v: string) => {
+    this.searchQuery = v;
+    console.log(v);
+  };
+
   async get() {
     this.isLoading = true;
     await delay(2000);
-    const response = await axios.get(
-      'https://jsonplaceholder.typicode.com/users'
-    );
+
+    console.log({
+      Category: this.CateList.filter((c) => c.isSelected).map((c) => c.id),
+      KeyWord: this.searchQuery,
+    });
+
+    const response = await axios({
+      method: 'get',
+      // /products
+      url: 'https://jsonplaceholder.typicode.com/users',
+      data: {
+        start: this.productList.length,
+        length: 10,
+        Category: this.CateList.map((c) => c.id),
+        KeyWord: this.searchQuery,
+      },
+    });
+
     response.data.forEach((element) => {
-      console.log(element);
+      let product = new Product();
+      product.name = element.name;
+      // product.location = element.address.stringify();
+      this.productList.push(product);
+    });
+    this.isLoading = false;
+  }
+
+  async updateList() {
+    this.isLoading = true;
+    await delay(2000);
+
+    console.log({
+      Category: this.CateList.filter((c) => c.isSelected).map((c) => c.id),
+      KeyWord: this.searchQuery,
+    });
+
+    const response = await axios({
+      method: 'get',
+      // /products
+      url: 'https://jsonplaceholder.typicode.com/users',
+      data: {
+        Category: this.CateList.map((c) => c.id),
+        KeyWord: this.searchQuery,
+        start: 0,
+        length: 10,
+      },
+    });
+
+    response.data.forEach((element) => {
+      this.productList.length = 0;
       let product = new Product();
       product.name = element.name;
       // product.location = element.address.stringify();
@@ -89,32 +141,6 @@ export class Products {
     }
   };
 
-  // toggleAdding = () => {
-  //   this.isAdding = !this.isAdding;
-  //   if (this.isAdding) {
-  //     this.isViewingMine = false;
-  //     this.tempCate = this.CateList.filter((c) => c.isSelected).map(
-  //       (c) => c.id
-  //     );
-  //     this.CateList.forEach((c) => (c.isSelected = false));
-  //   }
-
-  //   if (!this.isAdding) {
-  //     this.CateList.forEach((c) =>
-  //       this.tempCate.indexOf(c.id) !== -1
-  //         ? (c.isSelected = true)
-  //         : (c.isSelected = false)
-  //     );
-  //   }
-  // };
-
-  // toggleViewingMine = () => {
-  //   this.isViewingMine = !this.isViewingMine;
-  //   if (this.isViewingMine) {
-  //     this.isAdding = false;
-  //   }
-  // };
-
   getMyList = async () => {
     this.isLoading = true;
     const response = await axios.get(
@@ -123,7 +149,6 @@ export class Products {
     await delay(3000);
 
     response.data.forEach((element) => {
-      console.log(element);
       let product = new Product();
       product.name = element.name;
       // product.location = element.address.stringify();
@@ -150,22 +175,69 @@ class Product {
   postTimeFromNow: string = '4h';
   distance: string = '5km';
   voteStatus: VoteStatus = VoteStatus.Default;
+  upVoteBtnActive: boolean = false;
+  downVoteBtnActive: boolean = false;
 
   constructor() {
     makeAutoObservable(this);
   }
 
   updateVote(statusClicked: VoteStatus) {
-    if ((statusClicked = this.voteStatus)) {
-      this.voteStatus = VoteStatus.Default;
-    }else {
-      this.voteStatus = statusClicked;
+    if (statusClicked === VoteStatus.UpVote) {
+      switch (this.voteStatus) {
+        case VoteStatus.Default:
+          this.upVoteBtnActive = true;
+          this.upVote = ++this.upVote;
+          this.voteStatus = VoteStatus.UpVote;
+          break;
+        case VoteStatus.UpVote:
+          this.upVoteBtnActive = false;
+          this.upVote = --this.upVote;
+          this.voteStatus = VoteStatus.Default;
+          break;
+
+        case VoteStatus.DownVote:
+          this.upVoteBtnActive = true;
+          this.downVoteBtnActive = false;
+          this.upVote = ++this.upVote;
+          this.downVote = --this.downVote;
+          this.voteStatus = VoteStatus.UpVote;
+          break;
+      }
     }
-    
+
+    if (statusClicked === VoteStatus.DownVote) {
+      switch (this.voteStatus) {
+        case VoteStatus.Default:
+          this.downVoteBtnActive = true;
+          this.downVote = ++this.downVote;
+          this.voteStatus = VoteStatus.DownVote;
+          break;
+
+        case VoteStatus.UpVote:
+          this.downVoteBtnActive = true;
+          this.upVoteBtnActive = false;
+          this.downVote = ++this.downVote;
+          this.upVote = --this.upVote;
+          this.voteStatus = VoteStatus.DownVote;
+          break;
+
+        case VoteStatus.DownVote:
+          this.downVoteBtnActive = false;
+          this.downVote = --this.downVote;
+          this.voteStatus = VoteStatus.Default;
+          break;
+      }
+    }
+    // post to server
+    // upvote
+    // /product/{id}/up
+    // downvote
+    // /product/{id}/down
   }
 }
 
-enum VoteStatus {
+export enum VoteStatus {
   UpVote,
   DownVote,
   Default,

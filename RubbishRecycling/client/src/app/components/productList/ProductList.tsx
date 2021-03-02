@@ -11,7 +11,7 @@ import { LoadingOutlined, EnvironmentOutlined, PhoneOutlined, UpOutlined, DownOu
 import { SearchOutlined } from '@ant-design/icons';
 import './ProductList.css'
 import * as classNames from 'classnames';
-import { AppState, Products } from '../../stores/ProductListStore';
+import { AppState, Products, VoteStatus } from '../../stores/ProductListStore';
 import {
     Form,
     Radio,
@@ -51,15 +51,17 @@ const SideNav = observer((props: { store: Products }) => {
                     <Search
                         style={{ marginTop: "0.5rem" }}
                         placeholder="input search text"
+                        value={props.store.searchQuery}
                         allowClear
                         enterButton="Search"
                         size="large"
-                        onSearch={() => { console.log("lol") }}
+                        onChange={(e) => props.store.updateSearchQuery(e.target.value)}
+                        onSearch={() => props.store.updateList()}
                     />
                     <div className="categoryList" style={{ position: "fixed", display: "flex", flexDirection: "column" }}>
                         {
                             props.store.CateList.map(c =>
-                                <Button onClick={c.onClick} type={c.isSelected ? "primary" : "default"} size="large" shape="circle" > {c.name} </Button>
+                                <Button onClick={() => { c.onClick(); props.store.updateList() }} type={c.isSelected ? "primary" : "default"} size="large" shape="circle" > {c.name} </Button>
                             )
                         }
                         <Button onClick={() => props.store.setAppState(props.store.appState === AppState.AddProduct ? AppState.ProductList : AppState.AddProduct)} type={props.store.appState === AppState.AddProduct ? "primary" : "default"} size="large" shape="circle" > ➕ </Button>
@@ -104,13 +106,13 @@ const ProductDetail = observer((props: { store: Products }) => {
                     <img className="gm" src="https://loremflickr.com/320/240/product" />
                 </div>
                 <div>
-                <img className="gm" src="https://loremflickr.com/320/240/product?random=1" />
+                    <img className="gm" src="https://loremflickr.com/320/240/product?random=1" />
                 </div>
                 <div>
-                <img className="gm" src="https://loremflickr.com/320/240/product?random=2" />
+                    <img className="gm" src="https://loremflickr.com/320/240/product?random=2" />
                 </div>
                 <div>
-                <img className="gm" src="https://loremflickr.com/320/240/product?random=3" />
+                    <img className="gm" src="https://loremflickr.com/320/240/product?random=3" />
                 </div>
             </Carousel>
             <h1>{product.name}</h1>
@@ -212,8 +214,8 @@ const Content = observer((props: { store: Products }) => {
                                 <div className="voteBtn">
                                     <span className="ww">{i.postTimeFromNow}/{i.distance}</span>
 
-                                    <Button onClick={() => { }} size="small" >+ {i.upVote}</Button>
-                                    <Button onClick={() => { }} size="small" >- {i.downVote}</Button>
+                                    <Button onClick={(e) => { e.stopPropagation(); i.updateVote(VoteStatus.UpVote) }} type={i.voteStatus === VoteStatus.UpVote ? "primary" : "default"} size="small" >+ {i.upVote}</Button>
+                                    <Button onClick={(e) => { e.stopPropagation(); i.updateVote(VoteStatus.DownVote) }} type={i.voteStatus === VoteStatus.DownVote ? "primary" : "default"} size="small" >- {i.downVote}</Button>
                                 </div>
                             </div>
                         </Card>
